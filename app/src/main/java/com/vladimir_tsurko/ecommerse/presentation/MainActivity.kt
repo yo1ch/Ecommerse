@@ -1,7 +1,8 @@
-package com.vladimir_tsurko.ecommerse
+package com.vladimir_tsurko.ecommerse.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.vladimir_tsurko.ecommerse.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
