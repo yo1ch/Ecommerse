@@ -9,12 +9,10 @@ import com.vladimir_tsurko.ecommerse.data.local.UserEntity
 import com.vladimir_tsurko.ecommerse.domain.usecases.GetUserUseCase
 import com.vladimir_tsurko.ecommerse.domain.usecases.RegisterUserUseCase
 import com.vladimir_tsurko.ecommerse.utils.Resource
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
-class LoginViewModel @Inject constructor(
+class AuthViewModel @Inject constructor(
     private val application: Application,
     private val registerUserUseCase: RegisterUserUseCase,
     private val getUserUseCase: GetUserUseCase,
@@ -24,6 +22,10 @@ class LoginViewModel @Inject constructor(
     private val _registrationStatus = MutableLiveData<Resource<UserEntity?>>()
     val registrationStatus: LiveData<Resource<UserEntity?>>
         get() = _registrationStatus
+
+    private val _loginStatus = MutableLiveData<Resource<UserEntity?>>()
+    val loginStatus: LiveData<Resource<UserEntity?>>
+        get() = _loginStatus
 
 
 
@@ -35,6 +37,18 @@ class LoginViewModel @Inject constructor(
         } else {
             registerUserUseCase(userEntity)
             _registrationStatus.value = Resource.Success(null)
+        }
+    }
+
+    fun login(firstName: String, password: String) = viewModelScope.launch {
+        _loginStatus.value = Resource.Loading()
+        val user = getUserUseCase(firstName)
+        if(user == null){
+            _loginStatus.value = Resource.Error("There are no user with such firstname")
+        } else{
+            if(password == user.password){
+                _loginStatus.value = Resource.Success(null)
+            } else _loginStatus.value = Resource.Error("Wrong password")
         }
     }
 

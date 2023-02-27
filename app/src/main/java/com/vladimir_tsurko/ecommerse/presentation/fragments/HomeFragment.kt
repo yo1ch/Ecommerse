@@ -8,17 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import com.vladimir_tsurko.ecommerse.App
 import com.vladimir_tsurko.ecommerse.R
+import com.vladimir_tsurko.ecommerse.databinding.FragmentHomeBinding
 import com.vladimir_tsurko.ecommerse.databinding.FragmentLogInBinding
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.AuthViewModel
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.ViewModelFactory
 import com.vladimir_tsurko.ecommerse.utils.Resource
 import javax.inject.Inject
 
-class FragmentLogIn : Fragment() {
-
+class HomeFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
@@ -29,48 +28,14 @@ class FragmentLogIn : Fragment() {
     }
 
 
-    private var _binding: FragmentLogInBinding? = null
-    private val binding: FragmentLogInBinding
-        get() = _binding ?: throw RuntimeException("FragmentLogInBinding == null")
+    private var _binding: FragmentHomeBinding? = null
+    private val binding: FragmentHomeBinding
+        get() = _binding ?: throw RuntimeException("FragmentHomeBinding== null")
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-        val sharedPreferences = activity?.getSharedPreferences("Auth_data", Context.MODE_PRIVATE)
-        val editor = sharedPreferences?.edit()
-
-
-
         viewModel = ViewModelProvider(this, viewModelFactory)[AuthViewModel::class.java]
-        binding.loginButton.setOnClickListener {
-            viewModel.login(
-                firstName = binding.firstName.text.toString(),
-                password = binding.password.text.toString(),
-            )
-            viewModel.loginStatus.observe(viewLifecycleOwner){
-                when(it) {
-                    is Resource.Loading -> {
-
-                    }
-
-                    is Resource.Success ->{
-                        Toast.makeText(activity, "Successful login", Toast.LENGTH_SHORT).show()
-
-
-                        editor?.putString("USERNAME", binding.firstName.toString())
-                        editor?.putString("PASSWORD", binding.password.toString())
-                        editor?.apply()
-
-
-                        Navigation.findNavController(binding.root).navigate(R.id.action_fragmentLogIn_to_homeFragment)
-                    }
-
-                    is Resource.Error -> Toast.makeText(activity, it.message, Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
     }
 
 
@@ -79,7 +44,7 @@ class FragmentLogIn : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentLogInBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 

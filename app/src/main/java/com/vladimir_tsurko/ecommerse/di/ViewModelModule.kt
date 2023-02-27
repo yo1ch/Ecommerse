@@ -1,7 +1,7 @@
 package com.vladimir_tsurko.ecommerse.di
 
 import androidx.lifecycle.ViewModel
-import com.vladimir_tsurko.ecommerse.presentation.viewmodels.LoginViewModel
+import com.vladimir_tsurko.ecommerse.presentation.viewmodels.AuthViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -10,8 +10,8 @@ import dagger.multibindings.IntoMap
 interface ViewModelModule {
     @Binds
     @IntoMap
-    @ViewModelKey(LoginViewModel::class)
-    fun bindLoginViewModel(viewModel: LoginViewModel): ViewModel
+    @ViewModelKey(AuthViewModel::class)
+    fun bindLoginViewModel(viewModel: AuthViewModel): ViewModel
 
 
 }

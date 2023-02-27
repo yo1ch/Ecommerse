@@ -1,5 +1,6 @@
 package com.vladimir_tsurko.ecommerse.data
 
+import android.app.Application
 import com.vladimir_tsurko.ecommerse.data.local.UserDao
 import com.vladimir_tsurko.ecommerse.data.local.UserEntity
 import com.vladimir_tsurko.ecommerse.domain.repository.Repository
@@ -16,5 +17,6 @@ class RepositoryImpl @Inject constructor(
     override suspend fun getUser(firstName: String): UserEntity? {
         return userDao.getUser(firstName)
     }
+
 
 }
