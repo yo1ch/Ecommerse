@@ -8,5 +8,7 @@ interface Repository {
 
     suspend fun registerUser(userEntity: UserEntity)
 
+    suspend fun getUser(firstName: String): UserEntity?
+
 
 }

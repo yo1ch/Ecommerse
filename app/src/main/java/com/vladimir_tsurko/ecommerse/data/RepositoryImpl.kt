@@ -13,4 +13,8 @@ class RepositoryImpl @Inject constructor(
         userDao.registerUser(userEntity)
     }
 
+    override suspend fun getUser(firstName: String): UserEntity? {
+        return userDao.getUser(firstName)
+    }
+
 }
