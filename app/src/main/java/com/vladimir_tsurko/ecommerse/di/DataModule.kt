@@ -1,6 +1,7 @@
 package com.vladimir_tsurko.ecommerse.di
 
 import android.app.Application
+import android.content.Context
 import android.content.SharedPreferences
 import com.vladimir_tsurko.ecommerse.data.RepositoryImpl
 import com.vladimir_tsurko.ecommerse.data.local.UserDao
@@ -26,11 +27,12 @@ interface DataModule {
             return UserDb.getInstance(application).UserDao()
         }
 
-//        fun provideSharedPrefs(
-//            application: Application
-//        ): SharedPreferences{
-//            return application.getSharedPreferences()
-//        }
+        @Provides
+        fun provideSharedPrefs(
+            application: Application
+        ): SharedPreferences{
+            return application.getSharedPreferences("Auth_data", Context.MODE_PRIVATE)
+        }
 
 
     }

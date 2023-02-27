@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.vladimir_tsurko.ecommerse.App
 import com.vladimir_tsurko.ecommerse.R
 import com.vladimir_tsurko.ecommerse.databinding.FragmentLogInBinding
@@ -36,13 +37,6 @@ class FragmentLogIn : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-        val sharedPreferences = activity?.getSharedPreferences("Auth_data", Context.MODE_PRIVATE)
-        val editor = sharedPreferences?.edit()
-
-
-
         viewModel = ViewModelProvider(this, viewModelFactory)[AuthViewModel::class.java]
         binding.loginButton.setOnClickListener {
             viewModel.login(
@@ -57,13 +51,6 @@ class FragmentLogIn : Fragment() {
 
                     is Resource.Success ->{
                         Toast.makeText(activity, "Successful login", Toast.LENGTH_SHORT).show()
-
-
-                        editor?.putString("USERNAME", binding.firstName.toString())
-                        editor?.putString("PASSWORD", binding.password.toString())
-                        editor?.apply()
-
-
                         Navigation.findNavController(binding.root).navigate(R.id.action_fragmentLogIn_to_homeFragment)
                     }
 

@@ -10,5 +10,10 @@ interface Repository {
 
     suspend fun getUser(firstName: String): UserEntity?
 
+    fun saveLoggedUser(firstName: String, password: String)
+
+    fun checkLoggedUser(): Boolean
+
+    fun logout()
 
 }

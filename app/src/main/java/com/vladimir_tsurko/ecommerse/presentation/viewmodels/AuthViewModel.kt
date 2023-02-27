@@ -1,21 +1,18 @@
 package com.vladimir_tsurko.ecommerse.presentation.viewmodels
 
-import android.app.Application
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.vladimir_tsurko.ecommerse.data.local.UserEntity
-import com.vladimir_tsurko.ecommerse.domain.usecases.GetUserUseCase
-import com.vladimir_tsurko.ecommerse.domain.usecases.RegisterUserUseCase
+import com.vladimir_tsurko.ecommerse.domain.usecases.*
 import com.vladimir_tsurko.ecommerse.utils.Resource
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class AuthViewModel @Inject constructor(
-    private val application: Application,
     private val registerUserUseCase: RegisterUserUseCase,
     private val getUserUseCase: GetUserUseCase,
+    private val saveLoggedUserUseCase: SaveLoggedUserUseCase,
+    private val checkLoggedUserUseCase: CheckLoggedUserUseCase,
+    private val logOutUseCase: LogOutUseCase,
 ): ViewModel() {
 
 
@@ -48,8 +45,18 @@ class AuthViewModel @Inject constructor(
         } else{
             if(password == user.password){
                 _loginStatus.value = Resource.Success(null)
+                saveLoggedUserUseCase(firstName, password)
             } else _loginStatus.value = Resource.Error("Wrong password")
         }
+    }
+
+    fun logout(){
+        logOutUseCase()
+    }
+
+
+    fun checkLoggedUser(): Boolean{
+        return checkLoggedUserUseCase()
     }
 
 

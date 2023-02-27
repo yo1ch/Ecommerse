@@ -42,12 +42,8 @@ class FragmentSignIn : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this, viewModelFactory)[AuthViewModel::class.java]
         loginSpan()
-
-
-        val sharedPreferences = activity?.getSharedPreferences("Auth_data", Context.MODE_PRIVATE)
-        val getLogin = sharedPreferences?.getString("USERNAME","")
-        val getPassword = sharedPreferences?.getString("PASSWORD","")
-        if(getLogin != "" && getPassword != ""){
+        val isUserLogged = viewModel.checkLoggedUser()
+        if(isUserLogged){
             Navigation.findNavController(binding.root).navigate(R.id.action_fragmentSignIn_to_homeFragment)
         }
 

@@ -31,5 +31,10 @@
         android:id="@+id/homeFragment"
         android:name="com.vladimir_tsurko.ecommerse.presentation.fragments.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_fragmentSignIn"
+            app:destination="@id/fragmentSignIn"
+            />
+    </fragment>
 </navigation>
