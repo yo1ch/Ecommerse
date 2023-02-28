@@ -13,6 +13,7 @@ import com.vladimir_tsurko.ecommerse.App
 import com.vladimir_tsurko.ecommerse.R
 import com.vladimir_tsurko.ecommerse.databinding.FragmentHomeBinding
 import com.vladimir_tsurko.ecommerse.databinding.FragmentUserInformationBinding
+import com.vladimir_tsurko.ecommerse.presentation.MainActivity
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.AuthViewModel
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.ViewModelFactory
 import javax.inject.Inject
@@ -34,11 +35,13 @@ class UserInformationFragment : Fragment() {
         get() = _binding ?: throw RuntimeException("FragmentUserInformationBinding== null")
 
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this, viewModelFactory)[AuthViewModel::class.java]
-        binding.button.setOnClickListener {
-            //findNavController().navigate(R.id.action_userInformationFragment_to_homeFragment)
+        binding.buttonLogout.setOnClickListener {
+            viewModel.logout()
+            findNavController().navigate(R.id.action_global_to_authGraph)
         }
     }
 

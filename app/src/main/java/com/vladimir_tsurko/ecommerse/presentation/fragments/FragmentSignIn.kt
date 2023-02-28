@@ -42,11 +42,15 @@ class FragmentSignIn : Fragment() {
         get() = _binding ?: throw RuntimeException("FragmentSignInBinding == null")
 
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        (activity as? MainActivity)?.hideBottomBar()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this, viewModelFactory)[AuthViewModel::class.java]
         loginSpan()
-
 
 
 

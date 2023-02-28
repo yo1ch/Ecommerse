@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.vladimir_tsurko.ecommerse.App
 import com.vladimir_tsurko.ecommerse.R
 import com.vladimir_tsurko.ecommerse.databinding.FragmentHomeBinding
+import com.vladimir_tsurko.ecommerse.presentation.MainActivity
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.AuthViewModel
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.ViewModelFactory
 import javax.inject.Inject
@@ -30,14 +31,15 @@ class HomeFragment : Fragment() {
     private val binding: FragmentHomeBinding
         get() = _binding ?: throw RuntimeException("FragmentHomeBinding== null")
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        (activity as? MainActivity)?.showBottomBar()
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this, viewModelFactory)[AuthViewModel::class.java]
-        binding.logoutButton.setOnClickListener {
-            viewModel.logout()
-            findNavController().navigate(R.id.action_global_to_authGraph)
-        }
+
     }
 
 
