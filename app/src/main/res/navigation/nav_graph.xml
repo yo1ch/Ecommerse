@@ -15,8 +15,8 @@
             android:id="@+id/action_fragmentSignIn_to_fragmentLogIn"
             app:destination="@id/fragmentLogIn" />
         <action
-            android:id="@+id/action_fragmentSignIn_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            android:id="@+id/action_fragmentSignIn_to_navigation"
+            app:destination="@id/navigation" />
     </fragment>
     <fragment
         android:id="@+id/fragmentLogIn"
@@ -24,17 +24,27 @@
         android:label="fragment_log_in"
         tools:layout="@layout/fragment_log_in" >
         <action
-            android:id="@+id/action_fragmentLogIn_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            android:id="@+id/action_fragmentLogIn_to_navigation"
+            app:destination="@id/navigation" />
     </fragment>
-    <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.vladimir_tsurko.ecommerse.presentation.fragments.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+    <navigation android:id="@+id/navigation"
+        app:startDestination="@id/userInformationFragment">
+        <fragment
+            android:id="@+id/userInformationFragment"
+            android:name="com.vladimir_tsurko.ecommerse.presentation.fragments.UserInformationFragment"
+            android:label="fragment_user_information"
+            tools:layout="@layout/fragment_user_information" >
+            <action
+                android:id="@+id/action_userInformationFragment_to_homeFragment"
+                app:destination="@id/homeFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/homeFragment"
+            android:name="com.vladimir_tsurko.ecommerse.presentation.fragments.HomeFragment"
+            android:label="fragment_home"
+            tools:layout="@layout/fragment_home"/>
         <action
-            android:id="@+id/action_homeFragment_to_fragmentSignIn"
-            app:destination="@id/fragmentSignIn"
-            />
-    </fragment>
+            android:id="@+id/action_global_fragmentSignIn"
+            app:destination="@id/fragmentSignIn" />
+    </navigation>
 </navigation>

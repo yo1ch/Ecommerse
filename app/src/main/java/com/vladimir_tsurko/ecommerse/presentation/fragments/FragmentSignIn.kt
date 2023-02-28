@@ -44,7 +44,7 @@ class FragmentSignIn : Fragment() {
         loginSpan()
         val isUserLogged = viewModel.checkLoggedUser()
         if(isUserLogged){
-            Navigation.findNavController(binding.root).navigate(R.id.action_fragmentSignIn_to_homeFragment)
+            Navigation.findNavController(binding.root).navigate(R.id.action_fragmentSignIn_to_navigation)
         }
 
 
@@ -66,7 +66,7 @@ class FragmentSignIn : Fragment() {
 
                     is Resource.Success ->{
                         Toast.makeText(activity, "Successful registration", Toast.LENGTH_SHORT).show()
-                        Navigation.findNavController(binding.root).navigate(R.id.action_fragmentSignIn_to_homeFragment)
+                        Navigation.findNavController(binding.root).navigate(R.id.action_fragmentSignIn_to_navigation)
                     }
 
                     is Resource.Error -> Toast.makeText(activity, it.message, Toast.LENGTH_SHORT).show()

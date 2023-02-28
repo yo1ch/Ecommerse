@@ -4,6 +4,7 @@ import android.app.Application
 import com.vladimir_tsurko.ecommerse.presentation.fragments.FragmentLogIn
 import com.vladimir_tsurko.ecommerse.presentation.fragments.FragmentSignIn
 import com.vladimir_tsurko.ecommerse.presentation.fragments.HomeFragment
+import com.vladimir_tsurko.ecommerse.presentation.fragments.UserInformationFragment
 import dagger.BindsInstance
 import dagger.Component
 
@@ -21,6 +22,8 @@ interface ApplicationComponent {
     fun inject(fragment: FragmentLogIn)
 
     fun inject(fragment: HomeFragment)
+
+    fun inject(fragment: UserInformationFragment)
 
     @Component.Factory
     interface Factory{

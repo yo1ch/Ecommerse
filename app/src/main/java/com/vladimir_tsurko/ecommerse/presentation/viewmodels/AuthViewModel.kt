@@ -33,6 +33,7 @@ class AuthViewModel @Inject constructor(
             _registrationStatus.value = Resource.Error("This user are already exist")
         } else {
             registerUserUseCase(userEntity)
+            saveLoggedUserUseCase(userEntity.firstName, userEntity.password)
             _registrationStatus.value = Resource.Success(null)
         }
     }
