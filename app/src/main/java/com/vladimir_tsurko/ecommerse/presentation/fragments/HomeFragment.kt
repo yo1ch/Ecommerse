@@ -6,17 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.vladimir_tsurko.ecommerse.App
 import com.vladimir_tsurko.ecommerse.R
 import com.vladimir_tsurko.ecommerse.databinding.FragmentHomeBinding
-import com.vladimir_tsurko.ecommerse.databinding.FragmentLogInBinding
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.AuthViewModel
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.ViewModelFactory
-import com.vladimir_tsurko.ecommerse.utils.Resource
 import javax.inject.Inject
 
 class HomeFragment : Fragment() {
@@ -40,7 +36,7 @@ class HomeFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory)[AuthViewModel::class.java]
         binding.logoutButton.setOnClickListener {
             viewModel.logout()
-            Navigation.findNavController(binding.root).navigate(R.id.action_global_fragmentSignIn)
+            findNavController().navigate(R.id.action_global_to_authGraph)
         }
     }
 

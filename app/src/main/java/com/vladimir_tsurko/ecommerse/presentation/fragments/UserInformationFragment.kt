@@ -38,7 +38,7 @@ class UserInformationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this, viewModelFactory)[AuthViewModel::class.java]
         binding.button.setOnClickListener {
-            findNavController().navigate(R.id.action_userInformationFragment_to_homeFragment)
+            //findNavController().navigate(R.id.action_userInformationFragment_to_homeFragment)
         }
     }
 

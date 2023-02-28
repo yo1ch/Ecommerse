@@ -1,6 +1,7 @@
 package com.vladimir_tsurko.ecommerse.presentation.fragments
 
 import android.content.Context
+import android.opengl.Visibility
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.method.LinkMovementMethod
@@ -12,10 +13,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.vladimir_tsurko.ecommerse.App
 import com.vladimir_tsurko.ecommerse.R
 import com.vladimir_tsurko.ecommerse.data.local.UserEntity
 import com.vladimir_tsurko.ecommerse.databinding.FragmentSignInBinding
+import com.vladimir_tsurko.ecommerse.presentation.MainActivity
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.AuthViewModel
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.ViewModelFactory
 import com.vladimir_tsurko.ecommerse.utils.Resource
@@ -42,9 +46,14 @@ class FragmentSignIn : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this, viewModelFactory)[AuthViewModel::class.java]
         loginSpan()
+
+
+
+
+
         val isUserLogged = viewModel.checkLoggedUser()
         if(isUserLogged){
-            Navigation.findNavController(binding.root).navigate(R.id.action_fragmentSignIn_to_navigation)
+            findNavController().navigate(R.id.action_fragmentSignIn_to_main_graph)
         }
 
 
@@ -66,7 +75,7 @@ class FragmentSignIn : Fragment() {
 
                     is Resource.Success ->{
                         Toast.makeText(activity, "Successful registration", Toast.LENGTH_SHORT).show()
-                        Navigation.findNavController(binding.root).navigate(R.id.action_fragmentSignIn_to_navigation)
+                        findNavController().navigate(R.id.action_fragmentSignIn_to_main_graph)
                     }
 
                     is Resource.Error -> Toast.makeText(activity, it.message, Toast.LENGTH_SHORT).show()
@@ -81,7 +90,7 @@ class FragmentSignIn : Fragment() {
 
         val clickableSpan = object: ClickableSpan() {
             override fun onClick(widget: View) {
-                Navigation.findNavController(binding.root).navigate(R.id.action_fragmentSignIn_to_fragmentLogIn)
+                findNavController().navigate(R.id.action_fragmentSignIn_to_fragmentLogIn)
             }
         }
         spannableText.setSpan(clickableSpan,7,13, SpannableString.SPAN_EXCLUSIVE_INCLUSIVE)

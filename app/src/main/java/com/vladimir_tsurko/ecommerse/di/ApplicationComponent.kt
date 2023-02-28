@@ -1,10 +1,7 @@
 package com.vladimir_tsurko.ecommerse.di
 
 import android.app.Application
-import com.vladimir_tsurko.ecommerse.presentation.fragments.FragmentLogIn
-import com.vladimir_tsurko.ecommerse.presentation.fragments.FragmentSignIn
-import com.vladimir_tsurko.ecommerse.presentation.fragments.HomeFragment
-import com.vladimir_tsurko.ecommerse.presentation.fragments.UserInformationFragment
+import com.vladimir_tsurko.ecommerse.presentation.fragments.*
 import dagger.BindsInstance
 import dagger.Component
 

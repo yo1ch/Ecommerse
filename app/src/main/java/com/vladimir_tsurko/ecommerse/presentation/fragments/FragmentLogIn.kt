@@ -51,7 +51,7 @@ class FragmentLogIn : Fragment() {
 
                     is Resource.Success ->{
                         Toast.makeText(activity, "Successful login", Toast.LENGTH_SHORT).show()
-                        Navigation.findNavController(binding.root).navigate(R.id.action_fragmentLogIn_to_navigation)
+                        findNavController().navigate(R.id.action_fragmentLogIn_to_main_graph)
                     }
 
                     is Resource.Error -> Toast.makeText(activity, it.message, Toast.LENGTH_SHORT).show()
