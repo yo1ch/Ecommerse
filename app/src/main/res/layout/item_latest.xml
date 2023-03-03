@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="120dp"
@@ -7,7 +8,7 @@
     android:layout_marginStart="8dp"
     android:layout_marginEnd="8dp"
     android:background="?android:attr/selectableItemBackground"
-
+    app:cardElevation="0dp"
     app:cardCornerRadius="10dp"
     app:layout_constraintWidth_percent="0.5">
 
@@ -19,11 +20,11 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/teal_200"
+            tools:background="@color/teal_200"
             android:scaleType="centerCrop" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/typeTextView"
+            android:id="@+id/categoryTextView"
             android:layout_width="36dp"
             android:layout_height="12dp"
             android:layout_marginStart="8dp"
@@ -34,12 +35,12 @@
             android:textColor="@color/black"
             android:textSize="6sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/modelTextView"
+            app:layout_constraintBottom_toTopOf="@id/nameTextView"
             app:layout_constraintStart_toStartOf="parent"
             android:text="Phones" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/modelTextView"
+            android:id="@+id/nameTextView"
             android:layout_width="74dp"
             android:layout_height="26dp"
             android:layout_marginStart="8dp"
@@ -47,12 +48,12 @@
             android:textColor="@color/white"
             android:textSize="10sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/titleTextView"
+            app:layout_constraintBottom_toTopOf="@id/priceTextView"
             app:layout_constraintStart_toStartOf="parent"
             android:text="Samsung S10" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/titleTextView"
+            android:id="@+id/priceTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -63,7 +64,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:text="Morty Smith" />
+            tools:text="2000" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/addButton"

@@ -1,12 +1,17 @@
 package com.vladimir_tsurko.ecommerse.presentation.adapters
 
+import com.bumptech.glide.Glide
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import com.vladimir_tsurko.ecommerse.databinding.HorisontalProductsItemBinding
 import com.vladimir_tsurko.ecommerse.databinding.ItemFlashSaleBinding
+import com.vladimir_tsurko.ecommerse.databinding.ItemFlashSalePlaceholderBinding
 import com.vladimir_tsurko.ecommerse.databinding.ItemLatestBinding
+import com.vladimir_tsurko.ecommerse.databinding.ItemLatestPlaceholderBinding
 import com.vladimir_tsurko.ecommerse.domain.models.FlashSaleItem
 import com.vladimir_tsurko.ecommerse.domain.models.LatestItem
 import com.vladimir_tsurko.ecommerse.domain.models.ProductsHorisontalItem
+import com.vladimir_tsurko.ecommerse.domain.models.base.FlashSalePlaceholder
+import com.vladimir_tsurko.ecommerse.domain.models.base.LatestPlaceholder
 import com.vladimir_tsurko.ecommerse.domain.models.base.ListItem
 
 object MainDelegates {
@@ -25,7 +30,7 @@ object MainDelegates {
         )
         binding.recyclerView.adapter = adapter
         bind {
-            binding.titleTextView.text = item.title
+            binding.titleTv.text = item.title
             adapter.items = item.products
         }
     }
@@ -40,9 +45,12 @@ object MainDelegates {
     ){
         bind{
             binding.root.setOnClickListener { onClick.invoke() }
-            binding.titleTextView.text = item.price.toString()
-            binding.typeTextView.text = item.category
-            binding.modelTextView.text = item.name
+            binding.priceTextView.text = item.price.toString()
+            binding.categoryTextView.text = item.category
+            binding.nameTextView.text = item.name
+            Glide.with(context)
+                .load(item.image)
+                .into(binding.imageView)
 
 
         }
@@ -58,9 +66,24 @@ object MainDelegates {
     ){
         bind{
             binding.root.setOnClickListener { onClick.invoke() }
-            binding.titleTextView.text = item.title
-
+            binding.priceTextView.text = item.price.toString()
+            binding.categoryTextView.text = item.category
+            binding.nameTextView.text = item.name
+            Glide.with(context)
+                .load(item.image)
+                .into(binding.imageView)
         }
     }
+
+    val latestPlaceholder = adapterDelegateViewBinding<LatestPlaceholder, ListItem, ItemLatestPlaceholderBinding>(
+        { inflater, container ->
+            ItemLatestPlaceholderBinding.inflate(inflater, container,false)
+        }
+    ){}
+    val flashSalePlaceHolder = adapterDelegateViewBinding<FlashSalePlaceholder, ListItem, ItemFlashSalePlaceholderBinding>(
+        { inflater, container ->
+            ItemFlashSalePlaceholderBinding.inflate(inflater, container,false)
+        }
+    ){}
 
 }

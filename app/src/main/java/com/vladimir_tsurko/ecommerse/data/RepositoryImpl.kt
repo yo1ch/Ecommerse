@@ -9,6 +9,7 @@ import com.vladimir_tsurko.ecommerse.data.local.UserDao
 import com.vladimir_tsurko.ecommerse.data.local.UserEntity
 import com.vladimir_tsurko.ecommerse.data.mappers.ProductsMapper
 import com.vladimir_tsurko.ecommerse.data.remote.ProductsApi
+import com.vladimir_tsurko.ecommerse.data.remote.dto.FlashSaleItemsListDto
 import com.vladimir_tsurko.ecommerse.domain.models.ProductsHorisontalItem
 import com.vladimir_tsurko.ecommerse.domain.models.base.ListItem
 import com.vladimir_tsurko.ecommerse.domain.repository.Repository
@@ -45,6 +46,10 @@ class RepositoryImpl @Inject constructor(
 
     override suspend fun getLatest(): ProductsHorisontalItem {
         return mapper.mapLatestItemsListDtoToProductsHorizontalItem(productsApi.getLatest())
+    }
+
+    override suspend fun getFlashSale(): ProductsHorisontalItem {
+        return mapper.mapFlashSaleItemsListDtoToProductsHorizontalItem(productsApi.getFlashSale())
     }
 
 
