@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.vladimir_tsurko.ecommerse.App
@@ -13,6 +14,7 @@ import com.vladimir_tsurko.ecommerse.R
 import com.vladimir_tsurko.ecommerse.databinding.FragmentHomeBinding
 import com.vladimir_tsurko.ecommerse.presentation.MainActivity
 import com.vladimir_tsurko.ecommerse.presentation.adapters.MainScreenAdapter
+import com.vladimir_tsurko.ecommerse.presentation.adapters.ProductsAdapter
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.AuthViewModel
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.HomeViewModel
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.ViewModelFactory
@@ -32,7 +34,9 @@ class HomeFragment : Fragment() {
     private val binding: FragmentHomeBinding
         get() = _binding ?: throw RuntimeException("FragmentHomeBinding== null")
 
-    private val adapter = MainScreenAdapter()
+    private val adapter = MainScreenAdapter{
+        Toast.makeText(activity, "Successful registration", Toast.LENGTH_SHORT).show()
+    }
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -46,12 +50,12 @@ class HomeFragment : Fragment() {
 
         with(binding){
             recyclerView.adapter = adapter
-
             viewModel.data.observe(viewLifecycleOwner){
                 adapter.items = it
             }
-
         }
+
+
 
     }
 
