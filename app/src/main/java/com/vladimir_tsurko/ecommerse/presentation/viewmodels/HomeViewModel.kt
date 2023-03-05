@@ -10,6 +10,7 @@ import com.vladimir_tsurko.ecommerse.domain.models.ProductsHorisontalItem
 import com.vladimir_tsurko.ecommerse.domain.models.base.FlashSalePlaceholder
 import com.vladimir_tsurko.ecommerse.domain.models.base.LatestPlaceholder
 import com.vladimir_tsurko.ecommerse.domain.models.base.ListItem
+import com.vladimir_tsurko.ecommerse.domain.usecases.GetBrandsUseCase
 import com.vladimir_tsurko.ecommerse.domain.usecases.GetFlashSaleUseCase
 import com.vladimir_tsurko.ecommerse.domain.usecases.GetLatestUseCase
 import kotlinx.coroutines.delay
@@ -20,6 +21,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val getLatestUseCase: GetLatestUseCase,
     private val getFlashSaleUseCase: GetFlashSaleUseCase,
+    private val getBrandsUseCase: GetBrandsUseCase,
 ): ViewModel() {
 
     private val _data = MutableLiveData<List<ListItem>>()
@@ -59,6 +61,8 @@ class HomeViewModel @Inject constructor(
             items.add(getFlashSaleUseCase())
         }
         job2.join()
+        val brands = getBrandsUseCase()
+        items.add(brands)
         return items
     }
 

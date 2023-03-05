@@ -6,6 +6,7 @@ import com.vladimir_tsurko.ecommerse.data.local.UserDao
 import com.vladimir_tsurko.ecommerse.data.local.UserEntity
 import com.vladimir_tsurko.ecommerse.data.mappers.Mapper
 import com.vladimir_tsurko.ecommerse.data.remote.ProductsApi
+import com.vladimir_tsurko.ecommerse.domain.models.BrandsItem
 import com.vladimir_tsurko.ecommerse.domain.models.ProductsHorisontalItem
 import com.vladimir_tsurko.ecommerse.domain.models.RegistrationModel
 import com.vladimir_tsurko.ecommerse.domain.repository.Repository
@@ -21,13 +22,13 @@ class RepositoryImpl @Inject constructor(
     private val preferences: SharedPreferences,
     private val productsApi: ProductsApi,
     private val mapper: Mapper,
-): Repository {
+) : Repository {
 
     override suspend fun registerUser(registrationModel: RegistrationModel): String {
         val user = getUser(registrationModel.firstName)
-        return if(user != null){
+        return if (user != null) {
             REGISTRATION_ERROR
-        } else{
+        } else {
             val userEntity = mapper.mapRegistrationModelToUserEntity(registrationModel)
             userDao.registerUser(userEntity)
             saveLoggedUser(userEntity.firstName, userEntity.password)
@@ -36,7 +37,7 @@ class RepositoryImpl @Inject constructor(
 
     }
 
-    override suspend fun login(firstName: String, password: String): String{
+    override suspend fun login(firstName: String, password: String): String {
         val user = getUser(firstName)
         return if (user == null) {
             LOGIN_FIRSTNAME_ERROR
@@ -48,17 +49,9 @@ class RepositoryImpl @Inject constructor(
         }
     }
 
-    private suspend fun getUser(firstName: String): UserEntity? {
-        return userDao.getUser(firstName)
-    }
-
-    private fun saveLoggedUser(firstName: String, password: String){
-        preferences.edit().putString("USERNAME", firstName).putString("PASSWORD", password).apply()
-    }
-
     override fun checkLoggedUser(): Boolean {
-        val getLogin = preferences.getString("USERNAME","")
-        val getPassword = preferences.getString("PASSWORD","")
+        val getLogin = preferences.getString("USERNAME", "")
+        val getPassword = preferences.getString("PASSWORD", "")
         return getLogin != "" && getPassword != ""
     }
 
@@ -74,5 +67,41 @@ class RepositoryImpl @Inject constructor(
         return mapper.mapFlashSaleItemsListDtoToProductsHorizontalItem(productsApi.getFlashSale())
     }
 
+    private suspend fun getUser(firstName: String): UserEntity? {
+        return userDao.getUser(firstName)
+    }
+
+    private fun saveLoggedUser(firstName: String, password: String) {
+        preferences.edit().putString("USERNAME", firstName).putString("PASSWORD", password).apply()
+    }
+
+    override fun getBrands(): ProductsHorisontalItem {
+        val brands = listOf(
+            BrandsItem(
+                id = 0,
+                name = "Vans",
+                imageUrl = "https://asset.brandfetch.io/id4pDar7o9/id1a6Qkd5F.jpeg"
+            ),
+            BrandsItem(
+                id = 1,
+                name = "New balance",
+                imageUrl = "https://asset.brandfetch.io/idjR6yqXUb/idNxhmnlFq.jpeg"
+            ),
+            BrandsItem(
+                id = 2,
+                name = "Tesla",
+                imageUrl = "https://asset.brandfetch.io/id2S-kXbuK/idWvKxYIpS.png"
+            ),
+            BrandsItem(
+                id = 3,
+                name = "Adidas",
+                imageUrl = "https://asset.brandfetch.io/idyqQWKFVE/idPydV7D0U.png"
+            )
+        )
+        return ProductsHorisontalItem(
+            title = "Brands",
+            products = brands
+        )
+    }
 
 }

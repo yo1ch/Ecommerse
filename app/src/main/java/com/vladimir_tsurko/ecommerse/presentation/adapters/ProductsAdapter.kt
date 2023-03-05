@@ -10,6 +10,7 @@ class ProductsAdapter(
     init{
         delegatesManager.addDelegate(MainDelegates.latestProductsDelegate(onClick))
             .addDelegate(MainDelegates.flashSaleProductsDelegate(onClick))
+            .addDelegate(MainDelegates.brandsProductsDelegate())
             .addDelegate(MainDelegates.latestPlaceholder())
             .addDelegate(MainDelegates.flashSalePlaceHolder())
     }

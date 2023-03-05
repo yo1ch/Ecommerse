@@ -14,6 +14,7 @@
         android:layout_marginTop="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
         android:text="Top uncoming"
         android:textSize="24sp"
         android:fontFamily="sans-serif-medium"
@@ -35,6 +36,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleTv"/>
+
+
 
 
 
