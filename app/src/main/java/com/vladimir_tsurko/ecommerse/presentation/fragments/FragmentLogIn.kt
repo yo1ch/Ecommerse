@@ -9,13 +9,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.IdRes
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.DialogFragmentNavigator
+import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.findNavController
 import com.vladimir_tsurko.ecommerse.App
 import com.vladimir_tsurko.ecommerse.R
 import com.vladimir_tsurko.ecommerse.databinding.FragmentLogInBinding
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.AuthViewModel
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.ViewModelFactory
+import com.vladimir_tsurko.ecommerse.utils.Constants.LOGIN_SUCCESS
 import com.vladimir_tsurko.ecommerse.utils.Resource
 import kotlinx.android.synthetic.main.fragment_log_in.view.*
 import kotlinx.android.synthetic.main.fragment_log_in.view.et_name
@@ -77,13 +81,11 @@ class FragmentLogIn : Fragment() {
 
     private fun observeRegistrationStatus(){
         viewModel.loginStatus.observe(viewLifecycleOwner){
-            when(it) {
-                is Resource.Success ->{
-                    Toast.makeText(activity, "Successful login", Toast.LENGTH_SHORT).show()
-                    findNavController().navigate(R.id.action_fragmentLogIn_to_main_graph)
-                }
-
-                is Resource.Error -> Toast.makeText(activity, it.message, Toast.LENGTH_SHORT).show()
+            if(it == LOGIN_SUCCESS){
+                Toast.makeText(activity, LOGIN_SUCCESS, Toast.LENGTH_SHORT).show()
+                navigateSafe(R.id.action_fragmentLogIn_to_main_graph)
+            } else{
+                Toast.makeText(activity, it, Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -135,4 +137,15 @@ class FragmentLogIn : Fragment() {
             }
         })
     }
+
+    private fun Fragment.navigateSafe(@IdRes resIdRes: Int, args: Bundle? = null){
+        val controller = findNavController()
+        val currentDestination = (controller.currentDestination as? FragmentNavigator.Destination)?.className
+            ?: (controller.currentDestination as? DialogFragmentNavigator.Destination)?.className
+
+        if(currentDestination == this.javaClass.name){
+            controller.navigate(resIdRes, args)
+        }
+    }
+
 }

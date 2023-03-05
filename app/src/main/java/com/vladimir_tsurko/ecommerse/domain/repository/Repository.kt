@@ -4,16 +4,14 @@ import androidx.lifecycle.LiveData
 import com.vladimir_tsurko.ecommerse.data.local.UserEntity
 import com.vladimir_tsurko.ecommerse.data.remote.dto.FlashSaleItemsListDto
 import com.vladimir_tsurko.ecommerse.domain.models.ProductsHorisontalItem
+import com.vladimir_tsurko.ecommerse.domain.models.RegistrationModel
 import com.vladimir_tsurko.ecommerse.domain.models.base.ListItem
 
 interface Repository {
 
+    suspend fun registerUser(registrationModel: RegistrationModel): String
 
-    suspend fun registerUser(userEntity: UserEntity)
-
-    suspend fun getUser(firstName: String): UserEntity?
-
-    fun saveLoggedUser(firstName: String, password: String)
+    suspend fun login(firstName: String, password: String): String
 
     fun checkLoggedUser(): Boolean
 

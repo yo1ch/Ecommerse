@@ -1,5 +1,6 @@
 package com.vladimir_tsurko.ecommerse.data.mappers
 
+import com.vladimir_tsurko.ecommerse.data.local.UserEntity
 import com.vladimir_tsurko.ecommerse.data.remote.dto.FlashSaleDto
 import com.vladimir_tsurko.ecommerse.data.remote.dto.FlashSaleItemsListDto
 import com.vladimir_tsurko.ecommerse.data.remote.dto.LatestDto
@@ -7,9 +8,10 @@ import com.vladimir_tsurko.ecommerse.data.remote.dto.LatestItemsListDto
 import com.vladimir_tsurko.ecommerse.domain.models.FlashSaleItem
 import com.vladimir_tsurko.ecommerse.domain.models.LatestItem
 import com.vladimir_tsurko.ecommerse.domain.models.ProductsHorisontalItem
+import com.vladimir_tsurko.ecommerse.domain.models.RegistrationModel
 import javax.inject.Inject
 
-class ProductsMapper @Inject constructor() {
+class Mapper @Inject constructor() {
 
     fun mapFlashSaleItemsListDtoToProductsHorizontalItem(flashSaleItemsListDto: FlashSaleItemsListDto): ProductsHorisontalItem{
         val productsList = flashSaleItemsListDto.flash_sale.mapIndexed{ index, item ->
@@ -28,6 +30,15 @@ class ProductsMapper @Inject constructor() {
         return ProductsHorisontalItem(
             title = "Latest",
             products = productsList
+        )
+    }
+
+    fun mapRegistrationModelToUserEntity(registrationModel: RegistrationModel): UserEntity{
+        return UserEntity(
+            firstName = registrationModel.firstName,
+            secondName = registrationModel.secondName,
+            email = registrationModel.email,
+            password = registrationModel.password,
         )
     }
 

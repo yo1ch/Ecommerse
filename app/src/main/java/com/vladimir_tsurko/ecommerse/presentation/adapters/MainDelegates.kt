@@ -75,12 +75,12 @@ object MainDelegates {
         }
     }
 
-    val latestPlaceholder = adapterDelegateViewBinding<LatestPlaceholder, ListItem, ItemLatestPlaceholderBinding>(
+    fun latestPlaceholder() = adapterDelegateViewBinding<LatestPlaceholder, ListItem, ItemLatestPlaceholderBinding>(
         { inflater, container ->
             ItemLatestPlaceholderBinding.inflate(inflater, container,false)
         }
     ){}
-    val flashSalePlaceHolder = adapterDelegateViewBinding<FlashSalePlaceholder, ListItem, ItemFlashSalePlaceholderBinding>(
+    fun flashSalePlaceHolder() = adapterDelegateViewBinding<FlashSalePlaceholder, ListItem, ItemFlashSalePlaceholderBinding>(
         { inflater, container ->
             ItemFlashSalePlaceholderBinding.inflate(inflater, container,false)
         }

@@ -1,7 +1,6 @@
 package com.vladimir_tsurko.ecommerse.presentation.fragments
 
 import android.content.Context
-import android.opengl.Visibility
 import android.os.Bundle
 import android.text.Editable
 import android.text.SpannableString
@@ -14,25 +13,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.IdRes
-import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavController
-import androidx.navigation.NavDirections
-import androidx.navigation.NavOptions
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.DialogFragmentNavigator
 import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.vladimir_tsurko.ecommerse.App
 import com.vladimir_tsurko.ecommerse.R
-import com.vladimir_tsurko.ecommerse.data.local.UserEntity
 import com.vladimir_tsurko.ecommerse.databinding.FragmentSignInBinding
 import com.vladimir_tsurko.ecommerse.presentation.MainActivity
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.AuthViewModel
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.ViewModelFactory
-import com.vladimir_tsurko.ecommerse.utils.Resource
+import com.vladimir_tsurko.ecommerse.utils.Constants.REGISTRATION_ERROR
+import com.vladimir_tsurko.ecommerse.utils.Constants.REGISTRATION_SUCCESS
 import kotlinx.android.synthetic.main.fragment_sign_in.view.*
 import javax.inject.Inject
 
@@ -43,7 +35,7 @@ class FragmentSignIn : Fragment() {
 
     private lateinit var viewModel: AuthViewModel
 
-    private val component by lazy{
+    private val component by lazy {
         (requireActivity().application as App).component
     }
 
@@ -68,7 +60,6 @@ class FragmentSignIn : Fragment() {
     }
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -88,26 +79,26 @@ class FragmentSignIn : Fragment() {
         super.onAttach(context)
     }
 
-    private fun checkLoggedUser(){
+    private fun checkLoggedUser() {
         val isUserLogged = viewModel.checkLoggedUser()
-        if(isUserLogged){
+        if (isUserLogged) {
             findNavController().navigate(R.id.action_fragmentSignIn_to_main_graph)
         }
     }
 
-    private fun loginSpan(){
+    private fun loginSpan() {
         val spannableText = SpannableString("Please log in")
-        val clickableSpan = object: ClickableSpan() {
+        val clickableSpan = object : ClickableSpan() {
             override fun onClick(widget: View) {
                 findNavController().navigate(R.id.action_fragmentSignIn_to_fragmentLogIn)
             }
         }
-        spannableText.setSpan(clickableSpan,7,13, SpannableString.SPAN_EXCLUSIVE_INCLUSIVE)
+        spannableText.setSpan(clickableSpan, 7, 13, SpannableString.SPAN_EXCLUSIVE_INCLUSIVE)
         binding.loginText.text = spannableText
         binding.loginText.movementMethod = LinkMovementMethod.getInstance()
     }
 
-    private fun setupClickListeners(){
+    private fun setupClickListeners() {
         binding.registrationButton.setOnClickListener {
             viewModel.registerUser(
                 inputFirstName = binding.firstName.et_sign_name.text.toString(),
@@ -119,22 +110,20 @@ class FragmentSignIn : Fragment() {
         }
     }
 
-    private fun observeRegistrationStatus(){
-        viewModel.registrationStatus.observe(viewLifecycleOwner){
-            when(it) {
-                is Resource.Success ->{
-                    Toast.makeText(activity, "Successful registration", Toast.LENGTH_SHORT).show()
-                    navigateSafe(R.id.action_fragmentSignIn_to_main_graph)
-                }
-
-                is Resource.Error -> Toast.makeText(activity, it.message, Toast.LENGTH_SHORT).show()
+    private fun observeRegistrationStatus() {
+        viewModel.registrationStatus.observe(viewLifecycleOwner) {
+            if (it == REGISTRATION_SUCCESS) {
+                Toast.makeText(activity, REGISTRATION_SUCCESS, Toast.LENGTH_SHORT).show()
+                navigateSafe(R.id.action_fragmentSignIn_to_main_graph)
+            } else {
+                Toast.makeText(activity, REGISTRATION_ERROR, Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    private fun setupInputErrors(){
-        viewModel.errorInputFirstName.observe(viewLifecycleOwner){ errorMessage ->
-            if(errorMessage.isEmpty()){
+    private fun setupInputErrors() {
+        viewModel.errorInputFirstName.observe(viewLifecycleOwner) { errorMessage ->
+            if (errorMessage.isEmpty()) {
                 binding.etSignName.error = null
             } else {
                 binding.etSignName.error = errorMessage
@@ -149,17 +138,19 @@ class FragmentSignIn : Fragment() {
                 after: Int
             ) {
             }
+
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 viewModel.resetErrorInputFirstName()
             }
+
             override fun afterTextChanged(s: Editable?) {
             }
 
         })
 
-        viewModel.errorInputSecondName.observe(viewLifecycleOwner){ errorMessage ->
+        viewModel.errorInputSecondName.observe(viewLifecycleOwner) { errorMessage ->
 
-            if(errorMessage.isEmpty()){
+            if (errorMessage.isEmpty()) {
                 binding.etSignSecondName.error = null
             } else {
                 binding.etSignSecondName.error = errorMessage
@@ -174,16 +165,18 @@ class FragmentSignIn : Fragment() {
                 after: Int
             ) {
             }
+
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 viewModel.resetErrorInputSecondName()
             }
+
             override fun afterTextChanged(s: Editable?) {
             }
         })
 
-        viewModel.errorInputEmail.observe(viewLifecycleOwner){ errorMessage ->
+        viewModel.errorInputEmail.observe(viewLifecycleOwner) { errorMessage ->
 
-            if(errorMessage.isEmpty()){
+            if (errorMessage.isEmpty()) {
                 binding.etSignEmail.error = null
             } else {
                 binding.etSignEmail.error = errorMessage
@@ -197,15 +190,17 @@ class FragmentSignIn : Fragment() {
                 after: Int
             ) {
             }
+
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 viewModel.resetErrorInputEmail()
             }
+
             override fun afterTextChanged(s: Editable?) {
             }
         })
 
-        viewModel.errorInputPassword.observe(viewLifecycleOwner){ errorMessage ->
-            if(errorMessage.isEmpty()){
+        viewModel.errorInputPassword.observe(viewLifecycleOwner) { errorMessage ->
+            if (errorMessage.isEmpty()) {
                 binding.etSignPassword.error = null
             } else {
                 binding.etSignPassword.error = errorMessage
@@ -220,22 +215,24 @@ class FragmentSignIn : Fragment() {
                 after: Int
             ) {
             }
+
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 viewModel.resetErrorInputPassword()
             }
+
             override fun afterTextChanged(s: Editable?) {
             }
         })
     }
 
 
-
-    private fun Fragment.navigateSafe(@IdRes resIdRes: Int, args: Bundle? = null){
+    private fun Fragment.navigateSafe(@IdRes resIdRes: Int, args: Bundle? = null) {
         val controller = findNavController()
-        val currentDestination = (controller.currentDestination as? FragmentNavigator.Destination)?.className
-            ?: (controller.currentDestination as? DialogFragmentNavigator.Destination)?.className
+        val currentDestination =
+            (controller.currentDestination as? FragmentNavigator.Destination)?.className
+                ?: (controller.currentDestination as? DialogFragmentNavigator.Destination)?.className
 
-        if(currentDestination == this.javaClass.name){
+        if (currentDestination == this.javaClass.name) {
             controller.navigate(resIdRes, args)
         }
     }

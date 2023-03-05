@@ -42,7 +42,7 @@ class HomeViewModel @Inject constructor(
                 products = IntRange(1,3).map{ LatestPlaceholder }
             ),
             ProductsHorisontalItem(
-                title = "Flash sale",
+                title = "Flash Sale",
                 products = IntRange(1,2).map{ FlashSalePlaceholder }
             ))
     }

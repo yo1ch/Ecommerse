@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DefaultItemAnimator
 import com.vladimir_tsurko.ecommerse.App
 import com.vladimir_tsurko.ecommerse.R
 import com.vladimir_tsurko.ecommerse.databinding.FragmentHomeBinding
@@ -49,6 +50,10 @@ class HomeFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
 
         with(binding){
+//            val itemAnimator = binding.recyclerView.itemAnimator
+//            if(itemAnimator is DefaultItemAnimator){
+//                itemAnimator.supportsChangeAnimations = false
+//            }
             recyclerView.adapter = adapter
             viewModel.data.observe(viewLifecycleOwner){
                 adapter.items = it
