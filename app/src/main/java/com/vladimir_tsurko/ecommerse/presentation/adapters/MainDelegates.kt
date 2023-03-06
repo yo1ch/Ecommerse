@@ -6,6 +6,7 @@ import com.bumptech.glide.Glide
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import com.vladimir_tsurko.ecommerse.databinding.HorisontalProductsItemBinding
 import com.vladimir_tsurko.ecommerse.databinding.ItemBrandsBinding
+import com.vladimir_tsurko.ecommerse.databinding.ItemBrandsPlaceholderBinding
 import com.vladimir_tsurko.ecommerse.databinding.ItemFlashSaleBinding
 import com.vladimir_tsurko.ecommerse.databinding.ItemFlashSalePlaceholderBinding
 import com.vladimir_tsurko.ecommerse.databinding.ItemLatestBinding
@@ -14,6 +15,7 @@ import com.vladimir_tsurko.ecommerse.domain.models.BrandsItem
 import com.vladimir_tsurko.ecommerse.domain.models.FlashSaleItem
 import com.vladimir_tsurko.ecommerse.domain.models.LatestItem
 import com.vladimir_tsurko.ecommerse.domain.models.ProductsHorisontalItem
+import com.vladimir_tsurko.ecommerse.domain.models.base.BrandsPlaceHolder
 import com.vladimir_tsurko.ecommerse.domain.models.base.FlashSalePlaceholder
 import com.vladimir_tsurko.ecommerse.domain.models.base.LatestPlaceholder
 import com.vladimir_tsurko.ecommerse.domain.models.base.ListItem
@@ -39,16 +41,13 @@ object MainDelegates {
         }
     }
 
-    fun latestProductsDelegate(
-        onClick: () -> Unit
-    ) = adapterDelegateViewBinding<LatestItem, ListItem, ItemLatestBinding>(
+    fun latestProductsDelegate() = adapterDelegateViewBinding<LatestItem, ListItem, ItemLatestBinding>(
         { inflater, container ->
             ItemLatestBinding.inflate(inflater, container, false)
 
         }
     ){
         bind{
-            binding.root.setOnClickListener { onClick.invoke() }
             binding.priceTextView.text = item.price.toString()
             binding.categoryTextView.text = item.category
             binding.nameTextView.text = item.name
@@ -99,6 +98,12 @@ object MainDelegates {
     fun flashSalePlaceHolder() = adapterDelegateViewBinding<FlashSalePlaceholder, ListItem, ItemFlashSalePlaceholderBinding>(
         { inflater, container ->
             ItemFlashSalePlaceholderBinding.inflate(inflater, container,false)
+        }
+    ){}
+
+    fun brandsPlaceholder() = adapterDelegateViewBinding<BrandsPlaceHolder, ListItem, ItemBrandsPlaceholderBinding>(
+        { inflater, container ->
+            ItemBrandsPlaceholderBinding.inflate(inflater, container, false)
         }
     ){}
 

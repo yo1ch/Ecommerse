@@ -8,11 +8,12 @@ class ProductsAdapter(
 ): AsyncListDifferDelegationAdapter<ListItem>(DiffUtilItemCallback()) {
 
     init{
-        delegatesManager.addDelegate(MainDelegates.latestProductsDelegate(onClick))
+        delegatesManager.addDelegate(MainDelegates.latestProductsDelegate())
             .addDelegate(MainDelegates.flashSaleProductsDelegate(onClick))
             .addDelegate(MainDelegates.brandsProductsDelegate())
             .addDelegate(MainDelegates.latestPlaceholder())
             .addDelegate(MainDelegates.flashSalePlaceHolder())
+            .addDelegate(MainDelegates.brandsPlaceholder())
     }
 
 }
