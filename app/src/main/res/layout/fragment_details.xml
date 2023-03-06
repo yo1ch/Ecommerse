@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:lineSpacingExtra="8sp"
+        android:lineSpacingExtra="4sp"
         android:text="New balance sneakers"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -50,7 +50,7 @@
         android:id="@+id/detailsTextView"
         android:layout_width="230dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="Features waterproof, fire, air resistant shoes. all changed when the country of fire attacked"
         android:textColor="@color/grey_font"
         android:textSize="12sp"
@@ -59,14 +59,160 @@
         app:layout_constraintTop_toBottomOf="@+id/nameTextView" />
 
     <androidx.recyclerview.widget.RecyclerView
-        tools:listitem="@layout/color_list_item"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:id="@+id/rv_colors"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:orientation="horizontal"
+        android:paddingStart="24dp"
+        android:paddingEnd="24sp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvColor"
+        tools:listitem="@layout/color_list_item" />
+
+    <ImageView
+        android:id="@+id/iconFavourite"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/favorite_icon"
+        app:layout_constraintStart_toStartOf="@+id/detailsTextView"
         app:layout_constraintTop_toBottomOf="@+id/detailsTextView" />
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:text="3.9"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/iconFavourite"
+        app:layout_constraintTop_toTopOf="@+id/iconFavourite" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvReviews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:text="(4000 reviews)"
+        android:textColor="@color/grey_font"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toEndOf="@+id/tvScore"
+        app:layout_constraintTop_toTopOf="@+id/tvScore" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Color:"
+        android:textColor="@color/grey_font"
+        android:textFontWeight="600"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/iconFavourite"
+        app:layout_constraintTop_toBottomOf="@+id/iconFavourite" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottomMenu"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/details_bottom_menu_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rv_colors">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Quantity:"
+            android:textColor="@color/grey_font"
+            android:textFontWeight="600"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/plusButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            app:layout_constraintVertical_chainStyle="spread" />
+
+        <ImageButton
+            android:id="@+id/minusButton"
+            android:layout_width="50dp"
+            android:layout_height="28dp"
+            android:background="@drawable/buttons_bg"
+            android:foregroundGravity="left"
+            android:src="@drawable/ic_minus_sign"
+            app:cornerRadius="16dp"
+            app:layout_constraintBottom_toBottomOf="@id/bottomNavGuideline"
+            app:layout_constraintStart_toStartOf="@id/tvQuantity"
+            app:layout_constraintTop_toBottomOf="@+id/tvQuantity"
+            app:layout_constraintVertical_bias="0.328" />
+
+        <ImageButton
+            android:id="@+id/plusButton"
+            android:layout_width="50dp"
+            android:layout_height="28dp"
+            android:layout_marginLeft="22dp"
+            android:background="@drawable/buttons_bg"
+            android:foregroundGravity="left"
+            android:src="@drawable/ic_plus_sign"
+            app:cornerRadius="16dp"
+            app:layout_constraintStart_toEndOf="@+id/minusButton"
+            app:layout_constraintTop_toTopOf="@+id/minusButton" />
+
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/add_to_card_bg"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/bottomNavGuideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/totalPrice"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="$2,500"
+                android:textColor="@color/grey_font"
+                android:textSize="10sp"
+                android:textStyle="normal" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/addToCart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="ADD TO CART"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:textStyle="normal" />
+
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/bottomNavGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="56dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

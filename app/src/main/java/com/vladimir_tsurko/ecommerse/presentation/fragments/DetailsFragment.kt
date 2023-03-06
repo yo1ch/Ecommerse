@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
 import com.denzcoskun.imageslider.constants.ScaleTypes
@@ -41,18 +42,14 @@ class DetailsFragment : Fragment() {
         get() = _binding ?: throw RuntimeException("FragmentDetailsBinding== null")
 
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        (activity as? MainActivity)?.hideBottomBar()
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
         val slideModels = listOf<SlideModel>(
-            SlideModel("https://asset.brandfetch.io/id4pDar7o9/id1a6Qkd5F.jpeg"),
-            SlideModel("https://asset.brandfetch.io/idjR6yqXUb/idNxhmnlFq.jpeg"),
-            SlideModel("https://asset.brandfetch.io/id2S-kXbuK/idWvKxYIpS.png"),
+            SlideModel("https://assets.reebok.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/3613ebaf6ed24a609818ac63000250a3_9366/Classic_Leather_Shoes_-_Toddler_White_FZ2093_01_standard.jpg"),
+            SlideModel("https://assets.reebok.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/a94fbe7d8dfb4d3bbaf9ac63000135ed_9366/Classic_Leather_Shoes_-_Toddler_White_FZ2093_03_standard.jpg"),
+            SlideModel("https://assets.reebok.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/1fd1b80693d34f2584b0ac6300034598_9366/Classic_Leather_Shoes_-_Toddler_White_FZ2093_05_standard.jpg"),
         )
 
 
