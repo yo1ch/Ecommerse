@@ -53,9 +53,19 @@ class DetailsFragment : Fragment() {
 
     }
 
+
+
     private fun setupImageCarousel(){
         viewModel.details.observe(viewLifecycleOwner){ details ->
-            binding.slider.setImageList(details.image_urls, ScaleTypes.CENTER_CROP)
+            with(binding){
+                nameTextView.text = details.name
+                priceTextView.text = "$${details.price}"
+                detailsTextView.text = details.description
+                textViewReviews.text = "(${details.number_of_reviews} reviews)"
+                textViewRating.text = details.rating.toString()
+                slider.setImageList(details.image_urls, ScaleTypes.CENTER_CROP)
+            }
+
         }
     }
 

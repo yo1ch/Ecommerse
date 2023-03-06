@@ -2,14 +2,12 @@ package com.vladimir_tsurko.ecommerse.data
 
 
 import android.content.SharedPreferences
+import com.vladimir_tsurko.ecommerse.R
 import com.vladimir_tsurko.ecommerse.data.local.UserDao
 import com.vladimir_tsurko.ecommerse.data.local.UserEntity
 import com.vladimir_tsurko.ecommerse.data.mappers.Mapper
 import com.vladimir_tsurko.ecommerse.data.remote.ProductsApi
-import com.vladimir_tsurko.ecommerse.domain.models.BrandsItem
-import com.vladimir_tsurko.ecommerse.domain.models.DetailsModel
-import com.vladimir_tsurko.ecommerse.domain.models.ProductsHorisontalItem
-import com.vladimir_tsurko.ecommerse.domain.models.RegistrationModel
+import com.vladimir_tsurko.ecommerse.domain.models.*
 import com.vladimir_tsurko.ecommerse.domain.repository.Repository
 import com.vladimir_tsurko.ecommerse.utils.Constants.LOGIN_FIRSTNAME_ERROR
 import com.vladimir_tsurko.ecommerse.utils.Constants.LOGIN_SUCCESS
@@ -106,6 +104,39 @@ class RepositoryImpl @Inject constructor(
         return ProductsHorisontalItem(
             title = "Brands",
             products = brands
+        )
+    }
+
+    override fun getCategories(): List<CategoryModel> {
+        return listOf(
+            CategoryModel(
+                name = "Phones",
+                image = R.drawable.tab_phones,
+            ),
+            CategoryModel(
+                name = "Headphones",
+                image = R.drawable.tab_headphones,
+            ),
+            CategoryModel(
+                name = "Games",
+                image = R.drawable.tab_games,
+            ),
+            CategoryModel(
+                name = "Cars",
+                image = R.drawable.tab_cars,
+            ),
+            CategoryModel(
+                name = "Furniture",
+                image = R.drawable.tab_furniture,
+            ),
+            CategoryModel(
+                name = "Kids",
+                image = R.drawable.tab_kids,
+            ),
+            CategoryModel(
+                name = "Phones",
+                image = R.drawable.tab_phones,
+            ),
         )
     }
 

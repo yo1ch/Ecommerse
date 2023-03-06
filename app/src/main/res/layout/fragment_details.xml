@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -23,7 +25,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:lineSpacingExtra="4sp"
-        android:text="New balance sneakers"
+        tools:text="New balance sneakers"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -38,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
-        android:text="$22,50"
+        tools:text="$22,50"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -51,7 +53,7 @@
         android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Features waterproof, fire, air resistant shoes. all changed when the country of fire attacked"
+        tools:text="Features waterproof, fire, air resistant shoes. all changed when the country of fire attacked"
         android:textColor="@color/grey_font"
         android:textSize="12sp"
         android:textStyle="normal"
@@ -82,11 +84,11 @@
         app:layout_constraintTop_toBottomOf="@+id/detailsTextView" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvScore"
+        android:id="@+id/textViewRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
-        android:text="3.9"
+        tools:text="3.9"
         android:textColor="@color/black"
         android:textSize="12sp"
         android:textStyle="bold"
@@ -94,16 +96,16 @@
         app:layout_constraintTop_toTopOf="@+id/iconFavourite" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvReviews"
+        android:id="@+id/textViewReviews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
-        android:text="(4000 reviews)"
+        tools:text="(4000 reviews)"
         android:textColor="@color/grey_font"
         android:textSize="12sp"
         android:textStyle="normal"
-        app:layout_constraintStart_toEndOf="@+id/tvScore"
-        app:layout_constraintTop_toTopOf="@+id/tvScore" />
+        app:layout_constraintStart_toEndOf="@+id/textViewRating"
+        app:layout_constraintTop_toTopOf="@+id/textViewRating" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvColor"
@@ -123,13 +125,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottomMenu"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="160dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/details_bottom_menu_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rv_colors">
+        app:layout_constraintTop_toBottomOf="@+id/rv_colors"
+        app:layout_constraintVertical_bias="1.0">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvQuantity"

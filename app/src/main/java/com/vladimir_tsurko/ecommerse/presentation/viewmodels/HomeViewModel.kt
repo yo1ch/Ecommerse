@@ -4,19 +4,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.vladimir_tsurko.ecommerse.domain.models.ColorModel
-import com.vladimir_tsurko.ecommerse.domain.models.FlashSaleItem
-import com.vladimir_tsurko.ecommerse.domain.models.LatestItem
+import com.vladimir_tsurko.ecommerse.domain.models.CategoryModel
 import com.vladimir_tsurko.ecommerse.domain.models.ProductsHorisontalItem
 import com.vladimir_tsurko.ecommerse.domain.models.base.BrandsPlaceHolder
 import com.vladimir_tsurko.ecommerse.domain.models.base.FlashSalePlaceholder
 import com.vladimir_tsurko.ecommerse.domain.models.base.LatestPlaceholder
 import com.vladimir_tsurko.ecommerse.domain.models.base.ListItem
 import com.vladimir_tsurko.ecommerse.domain.usecases.GetBrandsUseCase
+import com.vladimir_tsurko.ecommerse.domain.usecases.GetCategoriesUseCase
 import com.vladimir_tsurko.ecommerse.domain.usecases.GetFlashSaleUseCase
 import com.vladimir_tsurko.ecommerse.domain.usecases.GetLatestUseCase
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -24,22 +21,30 @@ class HomeViewModel @Inject constructor(
     private val getLatestUseCase: GetLatestUseCase,
     private val getFlashSaleUseCase: GetFlashSaleUseCase,
     private val getBrandsUseCase: GetBrandsUseCase,
-): ViewModel() {
+    private val getCategoriesUseCase: GetCategoriesUseCase
+) : ViewModel() {
 
     private val _data = MutableLiveData<List<ListItem>>()
-    val data: LiveData<List<ListItem>> = _data
+    val data: LiveData<List<ListItem>>
+        get() = _data
+
+    private val _categories = MutableLiveData<List<CategoryModel>>()
+    val categories: LiveData<List<CategoryModel>>
+        get() = _categories
 
 
-    init{
-
+    init {
+        getCategories()
         viewModelScope.launch {
             _data.postValue(getLoaders())
             _data.postValue(getData())
-
         }
 
     }
 
+    private fun getCategories(){
+        _categories.value = getCategoriesUseCase()
+    }
 
     private fun getLoaders(): List<ListItem> {
         return listOf(
@@ -57,7 +62,7 @@ class HomeViewModel @Inject constructor(
             ))
     }
 
-    private suspend fun getData(): List<ListItem>{
+    private suspend fun getData(): List<ListItem> {
 
         val items = mutableListOf<ListItem>()
         val job1 = viewModelScope.launch {

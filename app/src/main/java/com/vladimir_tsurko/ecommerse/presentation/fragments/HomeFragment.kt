@@ -15,9 +15,12 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import com.vladimir_tsurko.ecommerse.App
 import com.vladimir_tsurko.ecommerse.R
 import com.vladimir_tsurko.ecommerse.databinding.FragmentHomeBinding
+import com.vladimir_tsurko.ecommerse.domain.models.CategoryModel
 import com.vladimir_tsurko.ecommerse.presentation.MainActivity
 import com.vladimir_tsurko.ecommerse.presentation.adapters.MainScreenAdapter
 import com.vladimir_tsurko.ecommerse.presentation.adapters.ProductsAdapter
+import com.vladimir_tsurko.ecommerse.presentation.adapters.categoriesAdapter.CategoriesAdapter
+import com.vladimir_tsurko.ecommerse.presentation.adapters.colorsAdapter.ColorsAdapter
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.AuthViewModel
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.HomeViewModel
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.ViewModelFactory
@@ -29,6 +32,8 @@ class HomeFragment : Fragment() {
     lateinit var viewModelFactory: ViewModelFactory
 
     private lateinit var viewModel: HomeViewModel
+
+    private lateinit var categoriesListAdapter: CategoriesAdapter
 
     private val component by lazy{
         (requireActivity().application as App).component
@@ -51,6 +56,9 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
+        setupCategoriesRecyclerVIew()
+
+
         with(binding){
             recyclerView.adapter = adapter
             viewModel.data.observe(viewLifecycleOwner){
@@ -61,6 +69,16 @@ class HomeFragment : Fragment() {
 
 
     }
+
+    private fun setupCategoriesRecyclerVIew(){
+        categoriesListAdapter = CategoriesAdapter()
+        binding.recyclerViewCategories.adapter = categoriesListAdapter
+        categoriesListAdapter.onItemClickListener = {}
+        viewModel.categories.observe(viewLifecycleOwner){
+            categoriesListAdapter.submitList(it)
+        }
+    }
+
 
     private fun clickListener(){
         findNavController().navigate(R.id.action_homeFragment_to_detailsFragment)
