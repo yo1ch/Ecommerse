@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         component.inject(this)
         viewModel = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
         

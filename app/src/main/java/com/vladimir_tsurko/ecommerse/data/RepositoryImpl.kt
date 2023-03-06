@@ -7,6 +7,7 @@ import com.vladimir_tsurko.ecommerse.data.local.UserEntity
 import com.vladimir_tsurko.ecommerse.data.mappers.Mapper
 import com.vladimir_tsurko.ecommerse.data.remote.ProductsApi
 import com.vladimir_tsurko.ecommerse.domain.models.BrandsItem
+import com.vladimir_tsurko.ecommerse.domain.models.DetailsModel
 import com.vladimir_tsurko.ecommerse.domain.models.ProductsHorisontalItem
 import com.vladimir_tsurko.ecommerse.domain.models.RegistrationModel
 import com.vladimir_tsurko.ecommerse.domain.repository.Repository
@@ -65,6 +66,10 @@ class RepositoryImpl @Inject constructor(
 
     override suspend fun getFlashSale(): ProductsHorisontalItem {
         return mapper.mapFlashSaleItemsListDtoToProductsHorizontalItem(productsApi.getFlashSale())
+    }
+
+    override suspend fun getDetails(): DetailsModel {
+        return mapper.mapDetailsDtoToDetailsModel(productsApi.getDetails())
     }
 
     private suspend fun getUser(firstName: String): UserEntity? {

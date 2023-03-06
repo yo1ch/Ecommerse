@@ -12,7 +12,7 @@
         app:cardBackgroundColor="#beb2a8"
         android:id="@+id/color_container"
         app:cardElevation="0dp"
-        app:cardCornerRadius="8dp"
+        app:cardCornerRadius="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

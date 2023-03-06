@@ -1,14 +1,10 @@
 package com.vladimir_tsurko.ecommerse.data.mappers
 
+import android.transition.Slide
+import com.denzcoskun.imageslider.models.SlideModel
 import com.vladimir_tsurko.ecommerse.data.local.UserEntity
-import com.vladimir_tsurko.ecommerse.data.remote.dto.FlashSaleDto
-import com.vladimir_tsurko.ecommerse.data.remote.dto.FlashSaleItemsListDto
-import com.vladimir_tsurko.ecommerse.data.remote.dto.LatestDto
-import com.vladimir_tsurko.ecommerse.data.remote.dto.LatestItemsListDto
-import com.vladimir_tsurko.ecommerse.domain.models.FlashSaleItem
-import com.vladimir_tsurko.ecommerse.domain.models.LatestItem
-import com.vladimir_tsurko.ecommerse.domain.models.ProductsHorisontalItem
-import com.vladimir_tsurko.ecommerse.domain.models.RegistrationModel
+import com.vladimir_tsurko.ecommerse.data.remote.dto.*
+import com.vladimir_tsurko.ecommerse.domain.models.*
 import javax.inject.Inject
 
 class Mapper @Inject constructor() {
@@ -40,6 +36,44 @@ class Mapper @Inject constructor() {
             email = registrationModel.email,
             password = registrationModel.password,
         )
+    }
+
+    fun mapDetailsDtoToDetailsModel(detailsDto: DetailsDto): DetailsModel{
+        return DetailsModel(
+            rating = detailsDto.rating,
+            price = detailsDto.price,
+            number_of_reviews = detailsDto.number_of_reviews,
+            name = detailsDto.name,
+            image_urls = mapImageUrlsToSlideModel(detailsDto.image_urls),
+            description = detailsDto.description,
+            colors = mapColorsToColorModelList(detailsDto.colors)
+        )
+    }
+
+
+    private fun mapImageUrlsToSlideModel(imageUrls: List<String>): List<SlideModel>{
+        val slideModelList = mutableListOf<SlideModel>()
+        imageUrls.forEach { color ->
+            slideModelList.add(
+                SlideModel(color)
+            )
+        }
+        return slideModelList
+    }
+
+    private fun mapColorsToColorModelList(colors: List<String>): List<ColorModel>{
+
+        val colorModelList = mutableListOf<ColorModel>()
+        colors.forEachIndexed { index, element ->
+            colorModelList.add(
+                ColorModel(
+                    id = index,
+                    color = element,
+                    isSelected = index==0
+                )
+            )
+        }
+        return colorModelList
     }
 
 

@@ -2,6 +2,7 @@ package com.vladimir_tsurko.ecommerse.di
 
 import androidx.lifecycle.ViewModel
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.AuthViewModel
+import com.vladimir_tsurko.ecommerse.presentation.viewmodels.DetailsViewModel
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.HomeViewModel
 import dagger.Binds
 import dagger.Module
@@ -18,6 +19,11 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(HomeViewModel::class)
     fun bindHomeViewModel(viewModel: HomeViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(DetailsViewModel::class)
+    fun bindDetailsViewModule(viewModel: DetailsViewModel): ViewModel
 
 
 }

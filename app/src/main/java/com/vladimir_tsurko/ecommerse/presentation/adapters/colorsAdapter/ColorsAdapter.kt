@@ -28,13 +28,13 @@ class ColorsAdapter() : ListAdapter<ColorModel, ColorsViewHolder>(ColorsDiffUtil
     override fun onBindViewHolder(holder: ColorsViewHolder, position: Int) {
         val item = getItem(position)
         holder.binding.color.setCardBackgroundColor(Color.parseColor(item.color))
-        holder.binding.root.setOnClickListener{
-            onItemClickListener?.invoke(item.id)
-        }
         if(item.isSelected){
             holder.binding.colorContainer.visibility = View.VISIBLE
         } else {
             holder.binding.colorContainer.visibility = View.INVISIBLE
+        }
+        holder.binding.root.setOnClickListener{
+            onItemClickListener?.invoke(item.id)
         }
 
 

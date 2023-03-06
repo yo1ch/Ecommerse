@@ -20,6 +20,7 @@ import com.vladimir_tsurko.ecommerse.domain.models.ColorModel
 import com.vladimir_tsurko.ecommerse.presentation.MainActivity
 import com.vladimir_tsurko.ecommerse.presentation.adapters.MainScreenAdapter
 import com.vladimir_tsurko.ecommerse.presentation.adapters.colorsAdapter.ColorsAdapter
+import com.vladimir_tsurko.ecommerse.presentation.viewmodels.DetailsViewModel
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.HomeViewModel
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.ViewModelFactory
 import javax.inject.Inject
@@ -29,7 +30,7 @@ class DetailsFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private lateinit var viewModel: HomeViewModel
+    private lateinit var viewModel: DetailsViewModel
 
     private lateinit var colorsListAdapter: ColorsAdapter
 
@@ -45,16 +46,20 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
-        val slideModels = listOf<SlideModel>(
-            SlideModel("https://assets.reebok.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/3613ebaf6ed24a609818ac63000250a3_9366/Classic_Leather_Shoes_-_Toddler_White_FZ2093_01_standard.jpg"),
-            SlideModel("https://assets.reebok.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/a94fbe7d8dfb4d3bbaf9ac63000135ed_9366/Classic_Leather_Shoes_-_Toddler_White_FZ2093_03_standard.jpg"),
-            SlideModel("https://assets.reebok.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/1fd1b80693d34f2584b0ac6300034598_9366/Classic_Leather_Shoes_-_Toddler_White_FZ2093_05_standard.jpg"),
-        )
+        viewModel = ViewModelProvider(this, viewModelFactory)[DetailsViewModel::class.java]
 
+        setupImageCarousel()
+        setupRecyclerView()
 
-        binding.slider.setImageList(slideModels, ScaleTypes.CENTER_CROP)
+    }
 
+    private fun setupImageCarousel(){
+        viewModel.details.observe(viewLifecycleOwner){ details ->
+            binding.slider.setImageList(details.image_urls, ScaleTypes.CENTER_CROP)
+        }
+    }
+
+    private fun setupRecyclerView(){
         colorsListAdapter = ColorsAdapter()
         binding.rvColors.adapter = colorsListAdapter
         val itemAnimator = binding.rvColors.itemAnimator
@@ -62,13 +67,12 @@ class DetailsFragment : Fragment() {
             itemAnimator.supportsChangeAnimations = false
         }
         viewModel.colors.observe(viewLifecycleOwner){
-            colorsListAdapter.submitList(it)
+            colorsListAdapter.submitList(it?.toList())
         }
 
         colorsListAdapter.onItemClickListener = {
             viewModel.changeSelectedState(it)
         }
-
     }
 
     override fun onCreateView(
