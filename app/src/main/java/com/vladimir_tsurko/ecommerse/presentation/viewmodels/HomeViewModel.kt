@@ -95,7 +95,6 @@ class HomeViewModel @Inject constructor(
             items.add(getLatestUseCase())
         }
         job1.join()
-        delay(2000L)
         val job2 = viewModelScope.launch {
             items.add(getFlashSaleUseCase())
         }
