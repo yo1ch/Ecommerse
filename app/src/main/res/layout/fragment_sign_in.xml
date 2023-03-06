@@ -6,54 +6,107 @@
     android:layout_height="match_parent"
     tools:context=".presentation.fragments.FragmentSignIn">
 
-    <EditText
+
+    <com.google.android.material.textfield.TextInputLayout
+
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/first_name"
-        android:layout_width="wrap_content"
+        android:background="#F2F2F2F2"
+        app:boxCornerRadiusTopStart="8dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="First name"
         android:inputType="textPersonName"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        android:layout_margin="16dp"
         app:layout_constraintBottom_toTopOf="@+id/second_name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintVertical_chainStyle="packed">
 
-    <EditText
+        <com.google.android.material.textfield.TextInputEditText
+            android:gravity="center_horizontal"
+            android:id="@+id/et_sign_name"
+            android:hint="First name"
+            android:inputType="textCapWords"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/second_name"
-        android:layout_width="wrap_content"
+        android:background="#F2F2F2F2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Second name"
         android:inputType="textPersonName"
+        android:hint="Second name"
+        app:boxStrokeWidth="0dp"
+        android:layout_margin="16dp"
         app:layout_constraintBottom_toTopOf="@+id/email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/first_name" />
+        app:layout_constraintTop_toBottomOf="@+id/first_name"
+        app:layout_constraintVertical_chainStyle="packed">
 
-    <EditText
+        <com.google.android.material.textfield.TextInputEditText
+            android:gravity="center_horizontal"
+            android:id="@+id/et_sign_second_name"
+            android:inputType="textCapWords"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/email"
-        android:layout_width="wrap_content"
+        android:background="#F2F2F2F2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="email"
-        android:inputType="textPersonName|textEmailSubject"
+        android:hint="Email"
+        app:boxStrokeWidth="0dp"
+        android:layout_margin="16dp"
+        android:inputType="textEmailSubject"
         app:layout_constraintBottom_toTopOf="@+id/password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/second_name" />
+        app:layout_constraintTop_toBottomOf="@+id/second_name"
+        app:layout_constraintVertical_chainStyle="packed">
 
-    <EditText
+        <com.google.android.material.textfield.TextInputEditText
+            android:gravity="center_horizontal"
+            android:id="@+id/et_sign_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/password"
-        android:layout_width="wrap_content"
+        android:background="#F2F2F2F2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Password"
+        android:hint="password"
+        app:boxStrokeWidth="0dp"
+        android:layout_margin="16dp"
         app:layout_constraintBottom_toTopOf="@+id/login_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
+        app:layout_constraintTop_toBottomOf="@+id/email"
+        app:layout_constraintVertical_chainStyle="packed">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:gravity="center_horizontal"
+            android:id="@+id/et_sign_password"
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <TextView
         android:id="@+id/login_text"

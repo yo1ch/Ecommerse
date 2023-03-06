@@ -22,6 +22,8 @@ interface ApplicationComponent {
 
     fun inject(fragment: UserInformationFragment)
 
+    fun inject(fragment: DetailsFragment)
+
     @Component.Factory
     interface Factory{
         fun create(

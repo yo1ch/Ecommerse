@@ -9,7 +9,11 @@
         android:id="@+id/homeFragment"
         android:name="com.vladimir_tsurko.ecommerse.presentation.fragments.HomeFragment"
         android:label="fragment_user_information"
-        tools:layout="@layout/fragment_user_information" />
+        tools:layout="@layout/fragment_user_information" >
+        <action
+            android:id="@+id/action_homeFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/userInformationFragment"
         android:name="com.vladimir_tsurko.ecommerse.presentation.fragments.UserInformationFragment"
@@ -20,5 +24,10 @@
         app:destination="@id/auth_graph"
         app:popUpTo="@id/auth_graph"
         app:popUpToInclusive="true"/>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.vladimir_tsurko.ecommerse.presentation.fragments.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details" />
 
 </navigation>

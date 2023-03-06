@@ -6,6 +6,8 @@ import android.content.SharedPreferences
 import com.vladimir_tsurko.ecommerse.data.RepositoryImpl
 import com.vladimir_tsurko.ecommerse.data.local.UserDao
 import com.vladimir_tsurko.ecommerse.data.local.UserDb
+import com.vladimir_tsurko.ecommerse.data.remote.ProductsApi
+import com.vladimir_tsurko.ecommerse.data.remote.RetrofitInstance
 import com.vladimir_tsurko.ecommerse.domain.repository.Repository
 import dagger.Binds
 import dagger.Module
@@ -32,6 +34,11 @@ interface DataModule {
             application: Application
         ): SharedPreferences{
             return application.getSharedPreferences("Auth_data", Context.MODE_PRIVATE)
+        }
+
+        @Provides
+        fun provideApiService(): ProductsApi{
+            return RetrofitInstance.apiService
         }
 
 
