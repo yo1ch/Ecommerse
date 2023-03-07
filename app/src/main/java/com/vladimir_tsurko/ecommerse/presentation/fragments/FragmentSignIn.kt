@@ -1,12 +1,15 @@
 package com.vladimir_tsurko.ecommerse.presentation.fragments
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.SpannableString
+import android.text.TextPaint
 import android.text.TextWatcher
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
+import android.text.style.ForegroundColorSpan
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -87,13 +90,19 @@ class FragmentSignIn : Fragment() {
     }
 
     private fun loginSpan() {
-        val spannableText = SpannableString("Please log in")
+        val spannableText = SpannableString("Already have an account? Log in")
         val clickableSpan = object : ClickableSpan() {
             override fun onClick(widget: View) {
                 findNavController().navigate(R.id.action_fragmentSignIn_to_fragmentLogIn)
             }
+
+            override fun updateDrawState(ds: TextPaint) {
+                super.updateDrawState(ds)
+                ds.color = Color.parseColor("#254FE6")
+                ds.isUnderlineText = false
+            }
         }
-        spannableText.setSpan(clickableSpan, 7, 13, SpannableString.SPAN_EXCLUSIVE_INCLUSIVE)
+        spannableText.setSpan(clickableSpan, 25, 31, SpannableString.SPAN_EXCLUSIVE_INCLUSIVE)
         binding.loginText.text = spannableText
         binding.loginText.movementMethod = LinkMovementMethod.getInstance()
     }

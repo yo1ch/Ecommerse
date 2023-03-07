@@ -20,7 +20,6 @@ import com.vladimir_tsurko.ecommerse.databinding.FragmentLogInBinding
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.AuthViewModel
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.ViewModelFactory
 import com.vladimir_tsurko.ecommerse.utils.Constants.LOGIN_SUCCESS
-import com.vladimir_tsurko.ecommerse.utils.Resource
 import kotlinx.android.synthetic.main.fragment_log_in.view.*
 import kotlinx.android.synthetic.main.fragment_log_in.view.et_name
 import javax.inject.Inject

@@ -1,10 +1,8 @@
 package com.vladimir_tsurko.ecommerse.presentation.viewmodels
 
 import androidx.lifecycle.*
-import com.vladimir_tsurko.ecommerse.data.local.UserEntity
 import com.vladimir_tsurko.ecommerse.domain.models.RegistrationModel
 import com.vladimir_tsurko.ecommerse.domain.usecases.*
-import com.vladimir_tsurko.ecommerse.utils.Resource
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
