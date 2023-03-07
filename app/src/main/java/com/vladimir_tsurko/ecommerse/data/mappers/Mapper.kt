@@ -50,6 +50,9 @@ class Mapper @Inject constructor() {
         )
     }
 
+    fun mapSuggestionsDtoToSuggestionsModel(suggestionsDto: SuggestionsDto): SuggestionsModel{
+        return SuggestionsModel(suggestionsDto.words)
+    }
 
     private fun mapImageUrlsToSlideModel(imageUrls: List<String>): List<SlideModel>{
         val slideModelList = mutableListOf<SlideModel>()

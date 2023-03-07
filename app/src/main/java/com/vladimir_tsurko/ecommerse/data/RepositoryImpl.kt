@@ -7,6 +7,7 @@ import com.vladimir_tsurko.ecommerse.data.local.UserDao
 import com.vladimir_tsurko.ecommerse.data.local.UserEntity
 import com.vladimir_tsurko.ecommerse.data.mappers.Mapper
 import com.vladimir_tsurko.ecommerse.data.remote.ProductsApi
+import com.vladimir_tsurko.ecommerse.data.remote.dto.SuggestionsDto
 import com.vladimir_tsurko.ecommerse.domain.models.*
 import com.vladimir_tsurko.ecommerse.domain.repository.Repository
 import com.vladimir_tsurko.ecommerse.utils.Constants.LOGIN_FIRSTNAME_ERROR
@@ -68,6 +69,10 @@ class RepositoryImpl @Inject constructor(
 
     override suspend fun getDetails(): DetailsModel {
         return mapper.mapDetailsDtoToDetailsModel(productsApi.getDetails())
+    }
+
+    override suspend fun getSuggestions(): SuggestionsModel {
+        return mapper.mapSuggestionsDtoToSuggestionsModel(productsApi.getSuggestions())
     }
 
     private suspend fun getUser(firstName: String): UserEntity? {

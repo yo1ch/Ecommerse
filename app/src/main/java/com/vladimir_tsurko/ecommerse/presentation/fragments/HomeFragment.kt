@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
@@ -57,17 +58,25 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
         setupCategoriesRecyclerVIew()
+        setupSearchView()
+        setupProductsRecyclerView()
 
+    }
 
+    private fun setupSearchView(){
+        viewModel.suggestions.observe(viewLifecycleOwner){ suggestions ->
+            val arrayAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1,suggestions)
+            binding.autoComplete.setAdapter(arrayAdapter)
+        }
+    }
+
+    private fun setupProductsRecyclerView(){
         with(binding){
             recyclerView.adapter = adapter
             viewModel.data.observe(viewLifecycleOwner){
                 adapter.items = it
             }
         }
-
-
-
     }
 
     private fun setupCategoriesRecyclerVIew(){

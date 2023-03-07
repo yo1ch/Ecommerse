@@ -10,10 +10,7 @@ import com.vladimir_tsurko.ecommerse.domain.models.base.BrandsPlaceHolder
 import com.vladimir_tsurko.ecommerse.domain.models.base.FlashSalePlaceholder
 import com.vladimir_tsurko.ecommerse.domain.models.base.LatestPlaceholder
 import com.vladimir_tsurko.ecommerse.domain.models.base.ListItem
-import com.vladimir_tsurko.ecommerse.domain.usecases.GetBrandsUseCase
-import com.vladimir_tsurko.ecommerse.domain.usecases.GetCategoriesUseCase
-import com.vladimir_tsurko.ecommerse.domain.usecases.GetFlashSaleUseCase
-import com.vladimir_tsurko.ecommerse.domain.usecases.GetLatestUseCase
+import com.vladimir_tsurko.ecommerse.domain.usecases.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -21,7 +18,8 @@ class HomeViewModel @Inject constructor(
     private val getLatestUseCase: GetLatestUseCase,
     private val getFlashSaleUseCase: GetFlashSaleUseCase,
     private val getBrandsUseCase: GetBrandsUseCase,
-    private val getCategoriesUseCase: GetCategoriesUseCase
+    private val getCategoriesUseCase: GetCategoriesUseCase,
+    private val getSuggestionsUseCase: GetSuggestionsUseCase,
 ) : ViewModel() {
 
     private val _data = MutableLiveData<List<ListItem>>()
@@ -32,9 +30,14 @@ class HomeViewModel @Inject constructor(
     val categories: LiveData<List<CategoryModel>>
         get() = _categories
 
+    private val _suggestions = MutableLiveData<List<String>>()
+    val suggestions: LiveData<List<String>>
+        get() = _suggestions
+
 
     init {
         getCategories()
+        getSuggestions()
         viewModelScope.launch {
             _data.postValue(getLoaders())
             _data.postValue(getData())
@@ -42,7 +45,11 @@ class HomeViewModel @Inject constructor(
 
     }
 
-    private fun getCategories(){
+    private fun getSuggestions() = viewModelScope.launch {
+        _suggestions.value = getSuggestionsUseCase().words
+    }
+
+    private fun getCategories() {
         _categories.value = getCategoriesUseCase()
     }
 
