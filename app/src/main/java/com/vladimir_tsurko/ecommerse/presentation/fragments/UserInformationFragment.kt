@@ -39,9 +39,12 @@ class UserInformationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this, viewModelFactory)[AuthViewModel::class.java]
-        binding.buttonLogout.setOnClickListener {
+        binding.logoutElement.setOnClickListener {
             viewModel.logout()
             findNavController().navigate(R.id.action_global_to_authGraph)
+        }
+        binding.backButton.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
 

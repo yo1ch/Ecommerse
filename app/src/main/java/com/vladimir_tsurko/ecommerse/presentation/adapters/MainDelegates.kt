@@ -48,7 +48,7 @@ object MainDelegates {
         }
     ){
         bind{
-            binding.priceTextView.text = item.price.toString()
+            binding.priceTextView.text = "$${item.price.toString()}"
             binding.categoryTextView.text = item.category
             binding.nameTextView.text = item.name
             Glide.with(context)
@@ -68,9 +68,10 @@ object MainDelegates {
     ){
         bind{
             binding.root.setOnClickListener { onClick.invoke() }
-            binding.priceTextView.text = item.price.toString()
+            binding.priceTextView.text = "$${item.price.toString()}"
             binding.categoryTextView.text = item.category
             binding.nameTextView.text = item.name
+            binding.saleTextView.text = "${item.discount}% off"
             Glide.with(context)
                 .load(item.image)
                 .into(binding.imageView)

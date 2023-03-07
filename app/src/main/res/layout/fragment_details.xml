@@ -9,6 +9,7 @@
     tools:context=".presentation.fragments.DetailsFragment">
 
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/carousel_container"
         android:layout_width="match_parent"
@@ -20,7 +21,7 @@
         <com.denzcoskun.imageslider.ImageSlider
             android:id="@+id/slider"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="350dp"
             app:iss_placeholder="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -55,7 +56,7 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:background="@null"
-                    android:src="@drawable/ic_like" />
+                    android:src="@drawable/ic_like_normal" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -85,13 +86,15 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/nameTextView"
         android:layout_width="190dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:lineSpacingExtra="4sp"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:ellipsize="end"
+        android:lines="2"
         app:layout_constraintEnd_toStartOf="@+id/priceTextView"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -151,7 +154,7 @@
         android:id="@+id/textViewRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
+        android:layout_marginStart="4dp"
         android:textColor="@color/black"
         android:textSize="12sp"
         android:textStyle="bold"
@@ -163,7 +166,7 @@
         android:id="@+id/textViewReviews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
+        android:layout_marginStart="4dp"
         android:textColor="@color/grey_font"
         android:textSize="12sp"
         android:textStyle="normal"
@@ -282,5 +285,7 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_end="56dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

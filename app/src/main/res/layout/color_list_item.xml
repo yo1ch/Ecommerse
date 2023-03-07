@@ -9,7 +9,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:visibility="invisible"
-        app:cardBackgroundColor="#beb2a8"
+        app:cardBackgroundColor="#ADADAD"
         android:id="@+id/color_container"
         app:cardElevation="0dp"
         app:cardCornerRadius="10dp"

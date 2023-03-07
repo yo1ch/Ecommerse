@@ -19,8 +19,35 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:background="#9B6CC6"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            tools:background="#9B6CC6" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/accountImage"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_margin="8dp"
+            android:src="@drawable/icon_flash_sale"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/RoundImage"
+            app:strokeColor="@color/black" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/saleTextView"
+            android:layout_width="50dp"
+            android:layout_height="18dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/sales_background"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="30% off" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/categoryTextView"
@@ -36,7 +63,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/nameTextView"
             app:layout_constraintStart_toStartOf="parent"
-            android:text="Phones" />
+            tools:text="Phones" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/nameTextView"
@@ -49,7 +76,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/priceTextView"
             app:layout_constraintStart_toStartOf="parent"
-            android:text="Samsung S10" />
+            tools:text="Samsung S10" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/priceTextView"
@@ -62,7 +89,8 @@
             android:textSize="10sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="$22,50" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/addButton"
@@ -71,9 +99,20 @@
             android:layout_marginEnd="4dp"
             android:layout_marginBottom="4dp"
             android:background="@drawable/round_button_background"
-            android:src="@drawable/ic_add"
+            android:src="@drawable/ic_add_normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/likeButton"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/round_button_background"
+            android:src="@drawable/ic_like_small"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintEnd_toStartOf="@+id/addButton" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

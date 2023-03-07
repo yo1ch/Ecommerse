@@ -10,18 +10,11 @@
     app:cardCornerRadius="10dp"
     app:layout_constraintWidth_percent="0.5">
 
-    <com.facebook.shimmer.ShimmerFrameLayout
+
+    <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:auto_start="true">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/shimmer_background" />
-
-
-    </com.facebook.shimmer.ShimmerFrameLayout>
+        android:background="@drawable/shimmer_background" />
 
 
 </com.google.android.material.card.MaterialCardView>
