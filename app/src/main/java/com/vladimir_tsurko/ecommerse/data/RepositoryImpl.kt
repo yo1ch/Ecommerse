@@ -2,12 +2,12 @@ package com.vladimir_tsurko.ecommerse.data
 
 
 import android.content.SharedPreferences
+import com.google.gson.Gson
 import com.vladimir_tsurko.ecommerse.R
 import com.vladimir_tsurko.ecommerse.data.local.UserDao
 import com.vladimir_tsurko.ecommerse.data.local.UserEntity
 import com.vladimir_tsurko.ecommerse.data.mappers.Mapper
 import com.vladimir_tsurko.ecommerse.data.remote.ProductsApi
-import com.vladimir_tsurko.ecommerse.data.remote.dto.SuggestionsDto
 import com.vladimir_tsurko.ecommerse.domain.models.*
 import com.vladimir_tsurko.ecommerse.domain.repository.Repository
 import com.vladimir_tsurko.ecommerse.utils.Constants.LOGIN_FIRSTNAME_ERROR
@@ -25,38 +25,51 @@ class RepositoryImpl @Inject constructor(
 ) : Repository {
 
     override suspend fun registerUser(registrationModel: RegistrationModel): String {
-        val user = getUser(registrationModel.firstName)
+        val user = getUserFromDb(registrationModel.firstName)
         return if (user != null) {
             REGISTRATION_ERROR
         } else {
             val userEntity = mapper.mapRegistrationModelToUserEntity(registrationModel)
             userDao.registerUser(userEntity)
-            saveLoggedUser(userEntity.firstName, userEntity.password)
+            saveLoggedUser(userEntity)
             REGISTRATION_SUCCESS
         }
 
     }
 
     override suspend fun login(firstName: String, password: String): String {
-        val user = getUser(firstName)
+        val user = getUserFromDb(firstName)
         return if (user == null) {
             LOGIN_FIRSTNAME_ERROR
         } else {
             if (password == user.password) {
-                saveLoggedUser(firstName, password)
+                saveLoggedUser(user)
                 LOGIN_SUCCESS
             } else WRONG_PASSWORD_ERROR
         }
     }
 
     override fun checkLoggedUser(): Boolean {
-        val getLogin = preferences.getString("USERNAME", "")
-        val getPassword = preferences.getString("PASSWORD", "")
-        return getLogin != "" && getPassword != ""
+        val firstName = preferences.getString("USER", "")
+        return firstName != ""
     }
 
     override fun logout() {
         preferences.edit().clear().apply()
+    }
+
+    override suspend fun updateUserPhoto(newImageUri: String) {
+        val loggedUserJson = preferences.getString("USER","")
+        val userEntity = parseJsonToUserEntity(loggedUserJson)
+        userEntity.imageUri = newImageUri
+        saveLoggedUser(userEntity)
+        userDao.updateUser(userEntity)
+    }
+
+    override suspend fun getLoggedUser(): UserModel? {
+        val loggedUserJson = preferences.getString("USER","")
+        val loggedUser = parseJsonToUserEntity(loggedUserJson)
+        return mapper.mapUserEntityToUserModel(loggedUser)
     }
 
     override suspend fun getLatest(): ProductsHorisontalItem {
@@ -75,12 +88,24 @@ class RepositoryImpl @Inject constructor(
         return mapper.mapSuggestionsDtoToSuggestionsModel(productsApi.getSuggestions())
     }
 
-    private suspend fun getUser(firstName: String): UserEntity? {
+    private suspend fun getUserFromDb(firstName: String): UserEntity? {
         return userDao.getUser(firstName)
     }
 
-    private fun saveLoggedUser(firstName: String, password: String) {
-        preferences.edit().putString("USERNAME", firstName).putString("PASSWORD", password).apply()
+    private suspend fun saveLoggedUser(userEntity: UserEntity) {
+        val userJson = parseUserEntityToJson(userEntity)
+        preferences.edit().putString("USER", userJson).apply()
+    }
+
+    private fun parseUserEntityToJson(userEntity: UserEntity): String {
+        val gson = Gson()
+        return gson.toJson(userEntity)
+    }
+
+    private fun parseJsonToUserEntity(userJson: String?): UserEntity{
+        val gson = Gson()
+        return gson.fromJson(userJson, UserEntity::class.java)
+
     }
 
     override fun getBrands(): ProductsHorisontalItem {

@@ -33,7 +33,7 @@
 
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/shapeableImageView"
+        android:id="@+id/userPhoto"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="16dp"
@@ -54,12 +54,12 @@
         android:text="Change photo"
         android:textColor="@color/grey_font"
         android:textSize="8sp"
-        app:layout_constraintEnd_toEndOf="@+id/shapeableImageView"
-        app:layout_constraintStart_toStartOf="@+id/shapeableImageView"
-        app:layout_constraintTop_toBottomOf="@+id/shapeableImageView" />
+        app:layout_constraintEnd_toEndOf="@+id/userPhoto"
+        app:layout_constraintStart_toStartOf="@+id/userPhoto"
+        app:layout_constraintTop_toBottomOf="@+id/userPhoto" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/userNameTextVIew"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -87,7 +87,7 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/userNameTextVIew" />
 
 
     <LinearLayout

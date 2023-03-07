@@ -6,7 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.net.toUri
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.vladimir_tsurko.ecommerse.App
@@ -15,7 +20,9 @@ import com.vladimir_tsurko.ecommerse.databinding.FragmentHomeBinding
 import com.vladimir_tsurko.ecommerse.databinding.FragmentUserInformationBinding
 import com.vladimir_tsurko.ecommerse.presentation.MainActivity
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.AuthViewModel
+import com.vladimir_tsurko.ecommerse.presentation.viewmodels.UserDetailsViewModel
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.ViewModelFactory
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -23,7 +30,7 @@ class UserInformationFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private lateinit var viewModel: AuthViewModel
+    private lateinit var viewModel: UserDetailsViewModel
 
     private val component by lazy{
         (requireActivity().application as App).component
@@ -38,16 +45,49 @@ class UserInformationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this, viewModelFactory)[AuthViewModel::class.java]
+        viewModel = ViewModelProvider(this, viewModelFactory)[UserDetailsViewModel::class.java]
+        bindViews()
+        setupBackButton()
+        setupLogoutButton()
+        setupImagePicker()
+
+    }
+
+    private fun bindViews(){
+        viewModel.loggedUser.observe(viewLifecycleOwner){
+            binding.userNameTextVIew.text = "${it?.firstName} ${it?.secondName}"
+            if(it?.imageUri != ""){
+                binding.userPhoto.setImageURI(it?.imageUri?.toUri())
+            }
+        }
+    }
+
+    private fun setupImagePicker(){
+        val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()){ uri ->
+            if(uri!=null){
+                binding.userPhoto.setImageURI(uri)
+                viewLifecycleOwner.lifecycleScope.launch {
+                    viewModel.updateUserPhoto(uri.toString())
+                }
+            }
+        }
+        binding.buttonUpload.setOnClickListener {
+            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+        }
+    }
+
+    private fun setupLogoutButton(){
         binding.logoutElement.setOnClickListener {
             viewModel.logout()
             findNavController().navigate(R.id.action_global_to_authGraph)
         }
+    }
+
+    private fun setupBackButton(){
         binding.backButton.setOnClickListener {
             findNavController().popBackStack()
         }
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater,

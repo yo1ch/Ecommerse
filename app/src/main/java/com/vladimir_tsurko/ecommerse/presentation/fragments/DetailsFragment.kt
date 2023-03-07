@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.vladimir_tsurko.ecommerse.App
@@ -38,9 +40,10 @@ class DetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this, viewModelFactory)[DetailsViewModel::class.java]
-
         bindViews()
         setupRecyclerView()
+        setupBackButton()
+
 
     }
 
@@ -68,8 +71,15 @@ class DetailsFragment : Fragment() {
                 viewModel.productQuantity.observe(viewLifecycleOwner){
                     totalPrice.text = "$${details.price*it}"
                 }
+
             }
 
+        }
+    }
+
+    private fun setupBackButton(){
+        binding.backButton.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
 

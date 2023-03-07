@@ -21,6 +21,10 @@ interface Repository {
 
     fun logout()
 
+    suspend fun updateUserPhoto(newImageUri: String)
+
+    suspend fun getLoggedUser():UserModel?
+
     suspend fun getLatest(): ProductsHorisontalItem
 
     suspend fun getFlashSale(): ProductsHorisontalItem

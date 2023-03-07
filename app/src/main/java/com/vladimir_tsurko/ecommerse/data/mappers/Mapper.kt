@@ -54,6 +54,16 @@ class Mapper @Inject constructor() {
         return SuggestionsModel(suggestionsDto.words)
     }
 
+    fun mapUserEntityToUserModel(userEntity: UserEntity?): UserModel?{
+        return UserModel(
+            firstName = userEntity?.firstName,
+            secondName = userEntity?.secondName,
+            email = userEntity?.email,
+            password = userEntity?.password,
+            imageUri = userEntity?.imageUri,
+        )
+    }
+
     private fun mapImageUrlsToSlideModel(imageUrls: List<String>): List<SlideModel>{
         val slideModelList = mutableListOf<SlideModel>()
         imageUrls.forEach { color ->

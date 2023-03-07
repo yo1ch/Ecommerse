@@ -10,7 +10,9 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.net.toUri
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import com.vladimir_tsurko.ecommerse.App
@@ -26,6 +28,7 @@ import com.vladimir_tsurko.ecommerse.presentation.viewmodels.AuthViewModel
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.HomeViewModel
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class HomeFragment : Fragment() {
@@ -57,10 +60,22 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
+        setProfilePhoto()
         setupCategoriesRecyclerVIew()
         setupSearchView()
         setupProductsRecyclerView()
 
+    }
+
+    private fun setProfilePhoto(){
+        viewLifecycleOwner.lifecycleScope.launch{
+            viewModel.getLoggedUser()
+        }
+        viewModel.loggedUser.observe(viewLifecycleOwner){
+            if(it?.imageUri != ""){
+                binding.accountImage.setImageURI(it?.imageUri?.toUri())
+            }
+        }
     }
 
     private fun setupSearchView(){

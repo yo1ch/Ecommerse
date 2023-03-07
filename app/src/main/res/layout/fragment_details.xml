@@ -8,7 +8,25 @@
     android:layout_height="match_parent"
     tools:context=".presentation.fragments.DetailsFragment">
 
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="16dp"
+        android:background="@android:color/transparent"
+        android:clickable="true"
+        android:elevation="2dp"
+        android:src="@drawable/ic_left_back_button"
+        app:layout_constraintBottom_toTopOf="@+id/toolbarGuideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/toolbarGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="56dp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/carousel_container"
@@ -89,12 +107,12 @@
         android:layout_height="60dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
+        android:ellipsize="end"
         android:lineSpacingExtra="4sp"
+        android:lines="2"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:ellipsize="end"
-        android:lines="2"
         app:layout_constraintEnd_toStartOf="@+id/priceTextView"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -259,10 +277,10 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                tools:text="$2,500"
                 android:textColor="@color/grey_font"
                 android:textSize="10sp"
-                android:textStyle="normal" />
+                android:textStyle="normal"
+                tools:text="$2,500" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/addToCart"
@@ -285,7 +303,6 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_end="56dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

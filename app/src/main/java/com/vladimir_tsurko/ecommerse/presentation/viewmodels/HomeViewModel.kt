@@ -4,8 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.vladimir_tsurko.ecommerse.data.local.UserEntity
 import com.vladimir_tsurko.ecommerse.domain.models.CategoryModel
 import com.vladimir_tsurko.ecommerse.domain.models.ProductsHorisontalItem
+import com.vladimir_tsurko.ecommerse.domain.models.UserModel
 import com.vladimir_tsurko.ecommerse.domain.models.base.BrandsPlaceHolder
 import com.vladimir_tsurko.ecommerse.domain.models.base.FlashSalePlaceholder
 import com.vladimir_tsurko.ecommerse.domain.models.base.LatestPlaceholder
@@ -20,6 +22,7 @@ class HomeViewModel @Inject constructor(
     private val getBrandsUseCase: GetBrandsUseCase,
     private val getCategoriesUseCase: GetCategoriesUseCase,
     private val getSuggestionsUseCase: GetSuggestionsUseCase,
+    private val getLoggedUserUseCase: GetLoggedUserUseCase,
 ) : ViewModel() {
 
     private val _data = MutableLiveData<List<ListItem>>()
@@ -34,6 +37,10 @@ class HomeViewModel @Inject constructor(
     val suggestions: LiveData<List<String>>
         get() = _suggestions
 
+    private var _loggedUser = MutableLiveData<UserModel?>()
+    val loggedUser: LiveData<UserModel?>
+    get() = _loggedUser
+
 
     init {
         getCategories()
@@ -43,6 +50,10 @@ class HomeViewModel @Inject constructor(
             _data.postValue(getData())
         }
 
+    }
+
+    suspend fun getLoggedUser() {
+        _loggedUser.value = getLoggedUserUseCase()
     }
 
     private fun getSuggestions() = viewModelScope.launch {
