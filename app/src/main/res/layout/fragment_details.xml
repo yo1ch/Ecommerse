@@ -9,14 +9,78 @@
     tools:context=".presentation.fragments.DetailsFragment">
 
 
-    <com.denzcoskun.imageslider.ImageSlider
-        android:id="@+id/slider"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/carousel_container"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        app:iss_placeholder="@color/black"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.denzcoskun.imageslider.ImageSlider
+            android:id="@+id/slider"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            app:iss_placeholder="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/buttonContainer"
+            android:layout_width="44dp"
+            android:layout_height="100dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="30dp"
+            app:cardBackgroundColor="#E5E9EF"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <ImageButton
+                    android:id="@+id/likeButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:src="@drawable/ic_like" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@null"
+                    android:src="@drawable/ic_button_divider" />
+
+                <ImageButton
+                    android:id="@+id/shareButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:src="@drawable/ic_share" />
+
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/nameTextView"
@@ -25,7 +89,6 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:lineSpacingExtra="4sp"
-        tools:text="New balance sneakers"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -33,32 +96,33 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/slider" />
+        app:layout_constraintTop_toBottomOf="@+id/carousel_container"
+        tools:text="New balance sneakers" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/priceTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
-        tools:text="$22,50"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/nameTextView"
-        app:layout_constraintTop_toTopOf="@+id/nameTextView" />
+        app:layout_constraintTop_toTopOf="@+id/nameTextView"
+        tools:text="$22,50" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/detailsTextView"
         android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        tools:text="Features waterproof, fire, air resistant shoes. all changed when the country of fire attacked"
         android:textColor="@color/grey_font"
         android:textSize="12sp"
         android:textStyle="normal"
         app:layout_constraintStart_toStartOf="@+id/nameTextView"
-        app:layout_constraintTop_toBottomOf="@+id/nameTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/nameTextView"
+        tools:text="Features waterproof, fire, air resistant shoes. all changed when the country of fire attacked" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_colors"
@@ -88,24 +152,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
-        tools:text="3.9"
         android:textColor="@color/black"
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/iconFavourite"
-        app:layout_constraintTop_toTopOf="@+id/iconFavourite" />
+        app:layout_constraintTop_toTopOf="@+id/iconFavourite"
+        tools:text="3.9" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textViewReviews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
-        tools:text="(4000 reviews)"
         android:textColor="@color/grey_font"
         android:textSize="12sp"
         android:textStyle="normal"
         app:layout_constraintStart_toEndOf="@+id/textViewRating"
-        app:layout_constraintTop_toTopOf="@+id/textViewRating" />
+        app:layout_constraintTop_toTopOf="@+id/textViewRating"
+        tools:text="(4000 reviews)" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvColor"
@@ -154,7 +218,7 @@
             android:id="@+id/minusButton"
             android:layout_width="50dp"
             android:layout_height="28dp"
-            android:background="@drawable/buttons_bg"
+            android:background="@drawable/ripple_effect_small_buttons"
             android:foregroundGravity="left"
             android:src="@drawable/ic_minus_sign"
             app:cornerRadius="16dp"
@@ -168,7 +232,7 @@
             android:layout_width="50dp"
             android:layout_height="28dp"
             android:layout_marginLeft="22dp"
-            android:background="@drawable/buttons_bg"
+            android:background="@drawable/ripple_effect_small_buttons"
             android:foregroundGravity="left"
             android:src="@drawable/ic_plus_sign"
             app:cornerRadius="16dp"
@@ -179,7 +243,8 @@
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:layout_marginEnd="24dp"
-            android:background="@drawable/add_to_card_bg"
+            android:background="@drawable/ripple_effect_main_buttons"
+            android:clickable="true"
             android:orientation="horizontal"
             app:layout_constraintBottom_toTopOf="@+id/bottomNavGuideline"
             app:layout_constraintEnd_toEndOf="parent"
@@ -191,7 +256,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="$2,500"
+                tools:text="$2,500"
                 android:textColor="@color/grey_font"
                 android:textSize="10sp"
                 android:textStyle="normal" />

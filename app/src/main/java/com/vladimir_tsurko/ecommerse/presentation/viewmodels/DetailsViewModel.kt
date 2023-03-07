@@ -12,29 +12,48 @@ import javax.inject.Inject
 
 class DetailsViewModel @Inject constructor(
     private val getDetailsUseCase: GetDetailsUseCase
-): ViewModel() {
+) : ViewModel() {
 
     private val _details = MutableLiveData<DetailsModel>()
     val details: LiveData<DetailsModel>
-    get() = _details
+        get() = _details
 
     private val _colors = MutableLiveData<List<ColorModel>?>()
     val colors: LiveData<List<ColorModel>?>
         get() = _colors
 
-    init{
+    private val _productQuantity = MutableLiveData<Int>(1)
+    val productQuantity: LiveData<Int>
+        get() = _productQuantity
+
+
+    init {
         viewModelScope.launch {
             getDetails()
         }
     }
 
-    private suspend fun getDetails(){
+    fun addToCart() {
+        val quantity = _productQuantity.value
+        _productQuantity.value = quantity?.plus(1)
+    }
+
+    fun deleteFromCart() {
+        val quantity = _productQuantity.value
+        if (quantity != null && quantity > 1) {
+            _productQuantity.value = quantity.minus(1)
+        }
+
+    }
+
+
+    private suspend fun getDetails() {
         val details = getDetailsUseCase()
         _details.postValue(details)
         _colors.postValue(details.colors)
     }
 
-    fun changeSelectedState(selectedId: Int){
+    fun changeSelectedState(selectedId: Int) {
         val colors = _colors.value?.map {
             it.deepCopy()
         }

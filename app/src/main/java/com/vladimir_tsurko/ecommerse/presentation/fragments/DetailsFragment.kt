@@ -6,22 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
 import com.denzcoskun.imageslider.constants.ScaleTypes
-import com.denzcoskun.imageslider.models.SlideModel
 import com.vladimir_tsurko.ecommerse.App
-import com.vladimir_tsurko.ecommerse.R
 import com.vladimir_tsurko.ecommerse.databinding.FragmentDetailsBinding
-import com.vladimir_tsurko.ecommerse.databinding.FragmentHomeBinding
-import com.vladimir_tsurko.ecommerse.domain.models.ColorModel
-import com.vladimir_tsurko.ecommerse.presentation.MainActivity
-import com.vladimir_tsurko.ecommerse.presentation.adapters.MainScreenAdapter
 import com.vladimir_tsurko.ecommerse.presentation.adapters.colorsAdapter.ColorsAdapter
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.DetailsViewModel
-import com.vladimir_tsurko.ecommerse.presentation.viewmodels.HomeViewModel
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.ViewModelFactory
 import javax.inject.Inject
 
@@ -48,22 +39,35 @@ class DetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this, viewModelFactory)[DetailsViewModel::class.java]
 
-        setupImageCarousel()
+        bindViews()
         setupRecyclerView()
 
     }
 
 
 
-    private fun setupImageCarousel(){
+    private fun bindViews(){
         viewModel.details.observe(viewLifecycleOwner){ details ->
             with(binding){
                 nameTextView.text = details.name
-                priceTextView.text = "$${details.price}"
+                if(details.price - details.price.toInt() == 0){
+                    priceTextView.text = "$${details.price},00"
+                } else{
+                    priceTextView.text = "$${details.price}"
+                }
                 detailsTextView.text = details.description
                 textViewReviews.text = "(${details.number_of_reviews} reviews)"
                 textViewRating.text = details.rating.toString()
                 slider.setImageList(details.image_urls, ScaleTypes.CENTER_CROP)
+                plusButton.setOnClickListener {
+                    viewModel.addToCart()
+                }
+                minusButton.setOnClickListener {
+                    viewModel.deleteFromCart()
+                }
+                viewModel.productQuantity.observe(viewLifecycleOwner){
+                    totalPrice.text = "$${details.price*it}"
+                }
             }
 
         }

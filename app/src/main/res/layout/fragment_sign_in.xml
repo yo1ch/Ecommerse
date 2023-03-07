@@ -9,16 +9,17 @@
 
     <com.google.android.material.textfield.TextInputLayout
 
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/first_name"
-        android:background="#F2F2F2F2"
-        app:boxCornerRadiusTopStart="8dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="#F2F2F2F2"
         android:inputType="textPersonName"
+        app:boxCornerRadiusTopStart="8dp"
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
-        android:layout_margin="16dp"
+        app:hintTextColor="@android:color/transparent"
         app:layout_constraintBottom_toTopOf="@+id/second_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,25 +27,25 @@
         app:layout_constraintVertical_chainStyle="packed">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:gravity="center_horizontal"
             android:id="@+id/et_sign_name"
-            android:hint="First name"
-            android:inputType="textCapWords"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:hint="First name"
+            android:inputType="textCapWords" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
 
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/second_name"
-        android:background="#F2F2F2F2"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="Second name"
-        app:boxStrokeWidth="0dp"
         android:layout_margin="16dp"
+        android:background="#F2F2F2F2"
+        android:hint="Second name"
+        android:inputType="textPersonName"
+        app:boxStrokeWidth="0dp"
         app:layout_constraintBottom_toTopOf="@+id/email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,24 +53,24 @@
         app:layout_constraintVertical_chainStyle="packed">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:gravity="center_horizontal"
             android:id="@+id/et_sign_second_name"
-            android:inputType="textCapWords"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:inputType="textCapWords" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
 
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/email"
-        android:background="#F2F2F2F2"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email"
-        app:boxStrokeWidth="0dp"
         android:layout_margin="16dp"
+        android:background="#F2F2F2F2"
+        android:hint="Email"
         android:inputType="textEmailSubject"
+        app:boxStrokeWidth="0dp"
         app:layout_constraintBottom_toTopOf="@+id/password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -77,22 +78,22 @@
         app:layout_constraintVertical_chainStyle="packed">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:gravity="center_horizontal"
             android:id="@+id/et_sign_email"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
 
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/password"
-        android:background="#F2F2F2F2"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="#F2F2F2F2"
         android:hint="password"
         app:boxStrokeWidth="0dp"
-        android:layout_margin="16dp"
         app:layout_constraintBottom_toTopOf="@+id/login_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -100,11 +101,11 @@
         app:layout_constraintVertical_chainStyle="packed">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:gravity="center_horizontal"
             android:id="@+id/et_sign_password"
-            android:inputType="textPassword"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
