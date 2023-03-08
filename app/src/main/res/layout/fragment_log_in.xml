@@ -15,8 +15,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="60dp"
-        android:text="Welcome back"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="@string/welcome_back_text"
         android:textColor="@color/black"
+        android:textFontWeight="600"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/first_name"
@@ -51,10 +53,12 @@
             android:id="@+id/et_name"
             android:layout_width="match_parent"
             android:layout_height="56dp"
+            android:fontFamily="@font/montserrat_medium"
             android:gravity="center_horizontal"
-            android:hint="First name"
+            android:hint="@string/first_name_hint"
             android:inputType="textCapWords"
-            android:textColorHint="#7B7B7B"
+            android:textColorHint="@color/auth_hint_color"
+            android:textFontWeight="500"
             android:textSize="12sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -67,14 +71,14 @@
         android:layout_height="36dp"
         android:layout_marginTop="18dp"
         android:layout_marginBottom="18dp"
-        app:endIconMode="password_toggle"
         android:background="@drawable/search_background"
         android:gravity="center"
         android:inputType="textPersonName"
         app:boxCornerRadiusTopStart="8dp"
+        app:boxStrokeErrorColor="@color/teal_200"
         app:boxStrokeWidth="0dp"
-        app:boxStrokeWidthFocused="0dp"
-        android:paddingStart="30dp"
+        app:boxStrokeWidthFocused="1dp"
+        app:errorEnabled="true"
         app:hintTextColor="@android:color/transparent"
         app:layout_constraintBottom_toTopOf="@+id/login_button"
         app:layout_constraintEnd_toEndOf="parent"
@@ -85,10 +89,12 @@
             android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:gravity="center"
-            android:hint="Password"
+            android:fontFamily="@font/montserrat_medium"
+            android:gravity="center_horizontal"
+            android:hint="@string/password_hint"
             android:inputType="textPassword"
-            android:textColorHint="#7B7B7B"
+            android:textColorHint="@color/auth_hint_color"
+            android:textFontWeight="500"
             android:textSize="12sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -100,15 +106,16 @@
         android:layout_marginTop="110dp"
         android:background="@drawable/ripple_effect_main_buttons"
         android:elevation="0dp"
-        android:text="Login"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="@string/login_button_text"
         android:textAllCaps="false"
-        android:textColor="#EAEAEA"
+        android:textColor="@color/white_button_color"
+        android:textFontWeight="700"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/password" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
@@ -135,10 +142,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:fontFamily="@font/montserrat_medium"
             android:gravity="center"
-            android:text="Sign in with Google"
+            android:text="@string/sign_in_with_google_text"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textFontWeight="500"
+            android:textSize="12sp" />
 
     </RelativeLayout>
 
@@ -167,10 +176,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:fontFamily="@font/montserrat_medium"
             android:gravity="center"
-            android:text="Sign in with Apple"
+            android:text="@string/sign_in_with_apple_text"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textFontWeight="500"
+            android:textSize="12sp" />
 
     </RelativeLayout>
 

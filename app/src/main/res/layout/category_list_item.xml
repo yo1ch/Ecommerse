@@ -3,20 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    >
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/categoryImage"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:clickable="true"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="14dp"
-        android:src="@drawable/tab_phones"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/tab_phones" />
 
     <TextView
 
@@ -24,9 +25,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Phones"
-        android:textSize="8sp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/categoryImage"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/categoryImage" />
+        app:layout_constraintStart_toStartOf="@id/categoryImage"
+        app:layout_constraintTop_toBottomOf="@+id/categoryImage"
+        tools:text="Phones" />
 </androidx.constraintlayout.widget.ConstraintLayout>
