@@ -1,7 +1,11 @@
 package com.vladimir_tsurko.ecommerse.presentation.fragments
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.ForegroundColorSpan
 import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -60,11 +64,19 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
+        setupToolbarSpannableText()
         setProfilePhoto()
         setupCategoriesRecyclerVIew()
         setupSearchView()
         setupProductsRecyclerView()
 
+    }
+
+    private fun setupToolbarSpannableText(){
+        val spannableString = SpannableStringBuilder("Trade by bata")
+        val color = ForegroundColorSpan(Color.parseColor("#4E55D7"))
+        spannableString.setSpan(color,9,13, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
+        binding.toolbarTitle.text = spannableString
     }
 
     private fun setProfilePhoto(){
