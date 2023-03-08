@@ -20,9 +20,11 @@
         android:id="@+id/toolbar_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Trade by bata"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="@string/home_screen_header"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textFontWeight="700"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guidelineToolbar"
         app:layout_constraintEnd_toStartOf="@+id/accountImage"
@@ -49,31 +51,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="56dp"/>
+        app:layout_constraintGuide_begin="56dp" />
 
     <RelativeLayout
-        android:layout_margin="16dp"
-        android:background="@drawable/search_background"
         android:id="@+id/search_container"
         android:layout_width="300dp"
         android:layout_height="36dp"
-        android:orientation="horizontal"
+        android:layout_margin="16dp"
+        android:background="@drawable/search_background"
         android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/recyclerViewCategories"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guidelineToolbar">
 
         <AutoCompleteTextView
-            android:hint="what are you looking for?"
-            android:textColorHint="@color/black"
-            android:gravity="center"
             android:id="@+id/autoComplete"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:backgroundTint="@android:color/transparent"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center"
+            android:hint="@string/search_hint"
             android:inputType="textAutoComplete"
-            android:textSize="12sp" />
+            android:textColorHint="@color/black"
+            android:textSize="10sp" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -86,11 +89,11 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginBottom="8dp"
-        android:padding="8dp"
         android:id="@+id/recyclerViewCategories"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:clipToPadding="false"
         android:orientation="horizontal"
         android:paddingStart="16dp"
@@ -106,18 +109,18 @@
         android:id="@+id/recyclerViewContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recyclerViewCategories"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recyclerViewCategories">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
-            android:paddingBottom="56dp"
             android:orientation="vertical"
+            android:paddingBottom="56dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -126,8 +129,6 @@
             tools:listitem="@layout/horisontal_products_item" />
 
     </FrameLayout>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

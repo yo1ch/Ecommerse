@@ -2,4 +2,40 @@
     <string name="app_name">Ecommerse</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="view_all_text">View all</string>
+    <string name="search_hint">What are you looking for?</string>
+    <string name="home_screen_header">Trade by bata</string>
+    <string name="quantity_text">Quantity:</string>
+    <string name="add_to_cart_text">ADD TO CART</string>
+    <string name="color_text">Color:</string>
+    <string name="chsnge_photo_text">Change photo</string>
+    <string name="upload_item_text">Upload item</string>
+    <string name="trade_store_text">Trade store</string>
+    <string name="payment_method_text">Payment method</string>
+    <string name="balance_text">Balance</string>
+    <string name="balance_count_text">$1593</string>
+    <string name="trade_history_text">Trade history</string>
+    <string name="restore_purchase_text">Restore purchase</string>
+    <string name="help_text">Help</string>
+    <string name="log_out_text">Log out</string>
+    <string name="password_hint">Password</string>
+    <string name="first_name_hint">First name</string>
+    <string name="login_button_text">Login</string>
+    <string name="sign_in_with_google_text">Sign in with Google</string>
+    <string name="sign_in_with_apple_text">Sign in with Apple</string>
+    <string name="email_hint">Email</string>
+    <string name="second_name_hint">Second name</string>
+    <string name="welcome_back_text">Welcome back</string>
+    <string name="sign_in_text">Sign in</string>
+    <string name="sign_in_button_text">Sign in</string>
+
+    <string name ="reviews_concat">(%1$s reviews)</string>
+
+    <string name="price_concat_double">$%1$s,00</string>
+    <string name="price_concat_int">$%1$s</string>
+
+
+
+
+
 </resources>

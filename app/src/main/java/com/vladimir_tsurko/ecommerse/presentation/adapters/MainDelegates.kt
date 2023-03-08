@@ -1,24 +1,16 @@
 package com.vladimir_tsurko.ecommerse.presentation.adapters
 
-import android.view.View
-import androidx.core.view.marginBottom
 import com.bumptech.glide.Glide
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
-import com.vladimir_tsurko.ecommerse.databinding.HorisontalProductsItemBinding
-import com.vladimir_tsurko.ecommerse.databinding.ItemBrandsBinding
-import com.vladimir_tsurko.ecommerse.databinding.ItemBrandsPlaceholderBinding
-import com.vladimir_tsurko.ecommerse.databinding.ItemFlashSaleBinding
-import com.vladimir_tsurko.ecommerse.databinding.ItemFlashSalePlaceholderBinding
-import com.vladimir_tsurko.ecommerse.databinding.ItemLatestBinding
-import com.vladimir_tsurko.ecommerse.databinding.ItemLatestPlaceholderBinding
-import com.vladimir_tsurko.ecommerse.domain.models.BrandsItem
-import com.vladimir_tsurko.ecommerse.domain.models.FlashSaleItem
-import com.vladimir_tsurko.ecommerse.domain.models.LatestItem
-import com.vladimir_tsurko.ecommerse.domain.models.ProductsHorisontalItem
-import com.vladimir_tsurko.ecommerse.domain.models.base.BrandsPlaceHolder
-import com.vladimir_tsurko.ecommerse.domain.models.base.FlashSalePlaceholder
-import com.vladimir_tsurko.ecommerse.domain.models.base.LatestPlaceholder
-import com.vladimir_tsurko.ecommerse.domain.models.base.ListItem
+import com.vladimir_tsurko.domain.models.BrandsItem
+import com.vladimir_tsurko.domain.models.FlashSaleItem
+import com.vladimir_tsurko.domain.models.LatestItem
+import com.vladimir_tsurko.domain.models.ProductsHorisontalItem
+import com.vladimir_tsurko.domain.models.base.BrandsPlaceHolder
+import com.vladimir_tsurko.domain.models.base.FlashSalePlaceholder
+import com.vladimir_tsurko.domain.models.base.LatestPlaceholder
+import com.vladimir_tsurko.domain.models.base.ListItem
+import com.vladimir_tsurko.ecommerse.databinding.*
 
 object MainDelegates {
 

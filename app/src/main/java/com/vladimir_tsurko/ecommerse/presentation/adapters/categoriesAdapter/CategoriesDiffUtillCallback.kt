@@ -1,8 +1,7 @@
 package com.vladimir_tsurko.ecommerse.presentation.adapters.categoriesAdapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.vladimir_tsurko.ecommerse.domain.models.CategoryModel
-import com.vladimir_tsurko.ecommerse.domain.models.ColorModel
+import com.vladimir_tsurko.domain.models.CategoryModel
 
 object CategoriesDiffUtillCallback: DiffUtil.ItemCallback<CategoryModel>() {
 

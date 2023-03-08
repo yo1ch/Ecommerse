@@ -2,16 +2,16 @@ package com.vladimir_tsurko.ecommerse.presentation.fragments
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.vladimir_tsurko.ecommerse.App
+import com.vladimir_tsurko.ecommerse.R
 import com.vladimir_tsurko.ecommerse.databinding.FragmentDetailsBinding
 import com.vladimir_tsurko.ecommerse.presentation.adapters.colorsAdapter.ColorsAdapter
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.DetailsViewModel
@@ -52,15 +52,24 @@ class DetailsFragment : Fragment() {
     private fun bindViews(){
         viewModel.details.observe(viewLifecycleOwner){ details ->
             with(binding){
-                nameTextView.text = details.name
-                if(details.price - details.price.toInt() == 0){
-                    priceTextView.text = "$${details.price},00"
+                val name = details.name
+                val price = details.price.toString()
+                val description = details.description
+                val reviews = details.number_of_reviews.toString()
+                val rating = details.rating.toString()
+
+                nameTextView.text = name
+                detailsTextView.text = description
+                textViewReviews.text = getString(R.string.reviews_concat, reviews)
+                textViewRating.text = rating
+                if(details.price - price.toInt() == 0){
+                    priceTextView.text = getString(R.string.price_concat_double,price)
                 } else{
-                    priceTextView.text = "$${details.price}"
+                    priceTextView.text = getString(R.string.price_concat_int, price)
                 }
-                detailsTextView.text = details.description
-                textViewReviews.text = "(${details.number_of_reviews} reviews)"
-                textViewRating.text = details.rating.toString()
+
+
+
                 slider.setImageList(details.image_urls, ScaleTypes.CENTER_CROP)
                 plusButton.setOnClickListener {
                     viewModel.addToCart()
@@ -69,7 +78,7 @@ class DetailsFragment : Fragment() {
                     viewModel.deleteFromCart()
                 }
                 viewModel.productQuantity.observe(viewLifecycleOwner){
-                    totalPrice.text = "$${details.price*it}"
+                    totalPrice.text = getString(R.string.price_concat_int," ${ details.price * it }")
                 }
 
             }

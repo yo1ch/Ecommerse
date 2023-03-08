@@ -1,7 +1,7 @@
 package com.vladimir_tsurko.ecommerse.presentation.adapters
 
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
-import com.vladimir_tsurko.ecommerse.domain.models.base.ListItem
+import com.vladimir_tsurko.domain.models.base.ListItem
 
 class MainScreenAdapter(
     onClickListener: ()->Unit

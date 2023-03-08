@@ -31,7 +31,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/carousel_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/nameTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -39,7 +40,7 @@
         <com.denzcoskun.imageslider.ImageSlider
             android:id="@+id/slider"
             android:layout_width="match_parent"
-            android:layout_height="350dp"
+            android:layout_height="match_parent"
             app:iss_placeholder="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -113,6 +114,7 @@
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
+        app:fontFamily="@font/poppins_semibold"
         app:layout_constraintEnd_toStartOf="@+id/priceTextView"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -126,8 +128,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:textStyle="bold"
+        app:fontFamily="@font/poppins_regular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/nameTextView"
         app:layout_constraintTop_toTopOf="@+id/nameTextView"
@@ -141,6 +144,7 @@
         android:textColor="@color/grey_font"
         android:textSize="12sp"
         android:textStyle="normal"
+        app:fontFamily="@font/poppins_regular"
         app:layout_constraintStart_toStartOf="@+id/nameTextView"
         app:layout_constraintTop_toBottomOf="@+id/nameTextView"
         tools:text="Features waterproof, fire, air resistant shoes. all changed when the country of fire attacked" />
@@ -149,11 +153,12 @@
         android:id="@+id/rv_colors"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+
         android:orientation="horizontal"
         android:paddingStart="24dp"
         android:paddingEnd="24sp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@id/bottomMenu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvColor"
@@ -176,6 +181,7 @@
         android:textColor="@color/black"
         android:textSize="12sp"
         android:textStyle="bold"
+        app:fontFamily="@font/poppins_regular"
         app:layout_constraintStart_toEndOf="@+id/iconFavourite"
         app:layout_constraintTop_toTopOf="@+id/iconFavourite"
         tools:text="3.9" />
@@ -188,6 +194,7 @@
         android:textColor="@color/grey_font"
         android:textSize="12sp"
         android:textStyle="normal"
+        app:fontFamily="@font/poppins_regular"
         app:layout_constraintStart_toEndOf="@+id/textViewRating"
         app:layout_constraintTop_toTopOf="@+id/textViewRating"
         tools:text="(4000 reviews)" />
@@ -197,14 +204,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:layout_marginBottom="12dp"
         android:fontFamily="sans-serif-black"
-        android:text="Color:"
+        android:text="@string/color_text"
         android:textColor="@color/grey_font"
         android:textFontWeight="600"
         android:textSize="16sp"
+        app:fontFamily="@font/poppins_regular"
+        app:layout_constraintBottom_toTopOf="@id/rv_colors"
         app:layout_constraintStart_toStartOf="@+id/iconFavourite"
-        app:layout_constraintTop_toBottomOf="@+id/iconFavourite" />
+        app:layout_constraintTop_toBottomOf="@+id/iconFavourite"
+        app:layout_constraintVertical_bias="1.0" />
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -225,10 +234,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:fontFamily="sans-serif-black"
-            android:text="Quantity:"
+            android:text="@string/quantity_text"
             android:textColor="@color/grey_font"
             android:textFontWeight="600"
             android:textSize="12sp"
+            app:fontFamily="@font/poppins_regular"
             app:layout_constraintBottom_toTopOf="@+id/plusButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -276,8 +286,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:fontFamily="@font/poppins_regular"
                 android:gravity="center"
                 android:textColor="@color/grey_font"
+                android:textFontWeight="600"
                 android:textSize="10sp"
                 android:textStyle="normal"
                 tools:text="$2,500" />
@@ -287,9 +299,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:fontFamily="@font/poppins_regular"
                 android:gravity="center"
-                android:text="ADD TO CART"
+                android:text="@string/add_to_cart_text"
                 android:textColor="@color/white"
+                android:textFontWeight="600"
                 android:textSize="10sp"
                 android:textStyle="normal" />
 

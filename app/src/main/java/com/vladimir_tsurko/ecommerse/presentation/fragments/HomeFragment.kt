@@ -1,30 +1,26 @@
 package com.vladimir_tsurko.ecommerse.presentation.fragments
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
-import android.view.Gravity
-import androidx.fragment.app.Fragment
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.Toast
 import androidx.core.net.toUri
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DefaultItemAnimator
 import com.vladimir_tsurko.ecommerse.App
 import com.vladimir_tsurko.ecommerse.R
 import com.vladimir_tsurko.ecommerse.databinding.FragmentHomeBinding
-import com.vladimir_tsurko.ecommerse.domain.models.CategoryModel
 import com.vladimir_tsurko.ecommerse.presentation.MainActivity
 import com.vladimir_tsurko.ecommerse.presentation.adapters.MainScreenAdapter
-import com.vladimir_tsurko.ecommerse.presentation.adapters.ProductsAdapter
 import com.vladimir_tsurko.ecommerse.presentation.adapters.categoriesAdapter.CategoriesAdapter
-import com.vladimir_tsurko.ecommerse.presentation.adapters.colorsAdapter.ColorsAdapter
-import com.vladimir_tsurko.ecommerse.presentation.viewmodels.AuthViewModel
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.HomeViewModel
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -60,11 +56,19 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
+        setupToolbarSpannableText()
         setProfilePhoto()
         setupCategoriesRecyclerVIew()
         setupSearchView()
         setupProductsRecyclerView()
 
+    }
+
+    private fun setupToolbarSpannableText(){
+        val spannableString = SpannableStringBuilder("Trade by bata")
+        val color = ForegroundColorSpan(Color.parseColor("#4E55D7"))
+        spannableString.setSpan(color,9,13, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
+        binding.toolbarTitle.text = spannableString
     }
 
     private fun setProfilePhoto(){

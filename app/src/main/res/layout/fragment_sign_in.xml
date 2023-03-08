@@ -15,8 +15,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="60dp"
-        android:text="Sign in"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="@string/sign_in_text"
         android:textColor="@color/black"
+        android:textFontWeight="600"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/first_name"
@@ -52,10 +54,11 @@
             android:id="@+id/et_sign_name"
             android:layout_width="match_parent"
             android:layout_height="56dp"
+            android:fontFamily="@font/montserrat_medium"
             android:gravity="center_horizontal"
-            android:hint="First name"
+            android:hint="@string/first_name_hint"
             android:inputType="textCapWords"
-            android:textColorHint="#7B7B7B"
+            android:textColorHint="@color/auth_hint_color"
             android:textSize="12sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -83,10 +86,11 @@
             android:id="@+id/et_sign_second_name"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:gravity="center"
-            android:hint="Second name"
+            android:fontFamily="@font/montserrat_medium"
+            android:gravity="center_horizontal"
+            android:hint="@string/second_name_hint"
             android:inputType="textCapWords"
-            android:textColorHint="#7B7B7B"
+            android:textColorHint="@color/auth_hint_color"
             android:textSize="12sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -114,9 +118,10 @@
             android:id="@+id/et_sign_email"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:gravity="center"
-            android:hint="Email"
-            android:textColorHint="#7B7B7B"
+            android:fontFamily="@font/montserrat_medium"
+            android:gravity="center_horizontal"
+            android:hint="@string/email_hint"
+            android:textColorHint="@color/auth_hint_color"
             android:textSize="12sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -144,10 +149,11 @@
             android:id="@+id/et_sign_password"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:gravity="center"
-            android:hint="Password"
+            android:fontFamily="@font/montserrat_medium"
+            android:gravity="center_horizontal"
+            android:hint="@string/password_hint"
             android:inputType="textPassword"
-            android:textColorHint="#7B7B7B"
+            android:textColorHint="@color/auth_hint_color"
             android:textSize="12sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -159,9 +165,11 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/ripple_effect_main_buttons"
         android:elevation="0dp"
-        android:text="Sign in"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="@string/sign_in_button_text"
         android:textAllCaps="false"
-        android:textColor="#EAEAEA"
+        android:textColor="@color/white_button_color"
+        android:textFontWeight="700"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -194,10 +202,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:fontFamily="@font/montserrat_medium"
             android:gravity="center"
-            android:text="Sign in with Google"
+            android:text="@string/sign_in_with_google_text"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textFontWeight="500"
+            android:textSize="12sp" />
 
     </RelativeLayout>
 
@@ -226,10 +236,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:fontFamily="@font/montserrat_medium"
             android:gravity="center"
-            android:text="Sign in with Apple"
+            android:text="@string/sign_in_with_apple_text"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textFontWeight="500"
+            android:textSize="12sp" />
 
     </RelativeLayout>
 
@@ -238,9 +250,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Already have an account? Log in"
+        android:fontFamily="@font/montserrat_medium"
+        android:textFontWeight="500"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/registration_button"
-        app:layout_constraintTop_toBottomOf="@+id/registration_button" />
+        app:layout_constraintTop_toBottomOf="@+id/registration_button"
+        tools:text="Already have an account? Log in" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
