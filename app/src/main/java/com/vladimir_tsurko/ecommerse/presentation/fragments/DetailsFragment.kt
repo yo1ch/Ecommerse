@@ -67,9 +67,6 @@ class DetailsFragment : Fragment() {
                 } else{
                     priceTextView.text = getString(R.string.price_concat_int, price)
                 }
-
-
-
                 slider.setImageList(details.image_urls, ScaleTypes.CENTER_CROP)
                 plusButton.setOnClickListener {
                     viewModel.addToCart()
@@ -80,10 +77,24 @@ class DetailsFragment : Fragment() {
                 viewModel.productQuantity.observe(viewLifecycleOwner){
                     totalPrice.text = getString(R.string.price_concat_int," ${ details.price * it }")
                 }
+                showDefaultViews()
+                hideProgressBar()
 
             }
 
         }
+    }
+
+
+    private fun showDefaultViews(){
+        binding.tvColor.visibility = View.VISIBLE
+        binding.buttonContainer.visibility = View.VISIBLE
+        binding.iconFavourite.visibility = View.VISIBLE
+        binding.bottomMenu.visibility = View.VISIBLE
+    }
+
+    private fun hideProgressBar(){
+        binding.progressBar.visibility = View.GONE
     }
 
     private fun setupBackButton(){
