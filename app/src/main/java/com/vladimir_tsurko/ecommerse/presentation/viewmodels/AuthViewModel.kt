@@ -1,8 +1,11 @@
 package com.vladimir_tsurko.ecommerse.presentation.viewmodels
 
 import androidx.lifecycle.*
-import com.vladimir_tsurko.ecommerse.domain.models.RegistrationModel
-import com.vladimir_tsurko.ecommerse.domain.usecases.*
+import com.vladimir_tsurko.domain.models.RegistrationModel
+import com.vladimir_tsurko.domain.usecases.CheckLoggedUserUseCase
+import com.vladimir_tsurko.domain.usecases.LogOutUseCase
+import com.vladimir_tsurko.domain.usecases.LoginUseCase
+import com.vladimir_tsurko.domain.usecases.RegisterUserUseCase
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

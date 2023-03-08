@@ -3,12 +3,11 @@ package com.vladimir_tsurko.ecommerse.di
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
-import com.vladimir_tsurko.ecommerse.data.RepositoryImpl
-import com.vladimir_tsurko.ecommerse.data.local.UserDao
-import com.vladimir_tsurko.ecommerse.data.local.UserDb
-import com.vladimir_tsurko.ecommerse.data.remote.ProductsApi
-import com.vladimir_tsurko.ecommerse.data.remote.RetrofitInstance
-import com.vladimir_tsurko.ecommerse.domain.repository.Repository
+import com.vladimir_tsurko.data.RepositoryImpl
+import com.vladimir_tsurko.data.local.UserDao
+import com.vladimir_tsurko.data.local.UserDb
+import com.vladimir_tsurko.data.remote.RetrofitInstance
+import com.vladimir_tsurko.domain.repository.Repository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -25,7 +24,7 @@ interface DataModule {
         @Provides
         fun provideUserDao(
             application: Application
-        ): UserDao{
+        ): UserDao {
             return UserDb.getInstance(application).UserDao()
         }
 
@@ -37,7 +36,7 @@ interface DataModule {
         }
 
         @Provides
-        fun provideApiService(): ProductsApi{
+        fun provideApiService(): com.vladimir_tsurko.data.remote.ProductsApi {
             return RetrofitInstance.apiService
         }
 

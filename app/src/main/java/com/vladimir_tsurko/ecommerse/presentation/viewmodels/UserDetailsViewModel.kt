@@ -4,10 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.vladimir_tsurko.ecommerse.domain.models.UserModel
-import com.vladimir_tsurko.ecommerse.domain.usecases.GetLoggedUserUseCase
-import com.vladimir_tsurko.ecommerse.domain.usecases.LogOutUseCase
-import com.vladimir_tsurko.ecommerse.domain.usecases.UpdateUserPhotoUseCase
+import com.vladimir_tsurko.domain.models.UserModel
+import com.vladimir_tsurko.domain.usecases.GetLoggedUserUseCase
+import com.vladimir_tsurko.domain.usecases.LogOutUseCase
+import com.vladimir_tsurko.domain.usecases.UpdateUserPhotoUseCase
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

@@ -4,15 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.vladimir_tsurko.ecommerse.data.local.UserEntity
-import com.vladimir_tsurko.ecommerse.domain.models.CategoryModel
-import com.vladimir_tsurko.ecommerse.domain.models.ProductsHorisontalItem
-import com.vladimir_tsurko.ecommerse.domain.models.UserModel
-import com.vladimir_tsurko.ecommerse.domain.models.base.BrandsPlaceHolder
-import com.vladimir_tsurko.ecommerse.domain.models.base.FlashSalePlaceholder
-import com.vladimir_tsurko.ecommerse.domain.models.base.LatestPlaceholder
-import com.vladimir_tsurko.ecommerse.domain.models.base.ListItem
-import com.vladimir_tsurko.ecommerse.domain.usecases.*
+import com.vladimir_tsurko.domain.models.ProductsHorisontalItem
+import com.vladimir_tsurko.domain.models.UserModel
+import com.vladimir_tsurko.domain.models.base.BrandsPlaceHolder
+import com.vladimir_tsurko.domain.models.base.FlashSalePlaceholder
+import com.vladimir_tsurko.domain.models.base.LatestPlaceholder
+import com.vladimir_tsurko.domain.models.base.ListItem
+import com.vladimir_tsurko.domain.usecases.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -29,8 +27,8 @@ class HomeViewModel @Inject constructor(
     val data: LiveData<List<ListItem>>
         get() = _data
 
-    private val _categories = MutableLiveData<List<CategoryModel>>()
-    val categories: LiveData<List<CategoryModel>>
+    private val _categories = MutableLiveData<List<com.vladimir_tsurko.domain.models.CategoryModel>>()
+    val categories: LiveData<List<com.vladimir_tsurko.domain.models.CategoryModel>>
         get() = _categories
 
     private val _suggestions = MutableLiveData<List<String>>()

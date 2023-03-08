@@ -4,9 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.vladimir_tsurko.ecommerse.domain.models.ColorModel
-import com.vladimir_tsurko.ecommerse.domain.models.DetailsModel
-import com.vladimir_tsurko.ecommerse.domain.usecases.GetDetailsUseCase
+import com.vladimir_tsurko.domain.models.DetailsModel
+import com.vladimir_tsurko.domain.usecases.GetDetailsUseCase
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -18,8 +17,8 @@ class DetailsViewModel @Inject constructor(
     val details: LiveData<DetailsModel>
         get() = _details
 
-    private val _colors = MutableLiveData<List<ColorModel>?>()
-    val colors: LiveData<List<ColorModel>?>
+    private val _colors = MutableLiveData<List<com.vladimir_tsurko.domain.models.ColorModel>?>()
+    val colors: LiveData<List<com.vladimir_tsurko.domain.models.ColorModel>?>
         get() = _colors
 
     private val _productQuantity = MutableLiveData<Int>(1)

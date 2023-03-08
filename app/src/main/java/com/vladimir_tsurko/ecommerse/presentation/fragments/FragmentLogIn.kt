@@ -4,12 +4,12 @@ import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.IdRes
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.DialogFragmentNavigator
 import androidx.navigation.fragment.FragmentNavigator
@@ -19,9 +19,8 @@ import com.vladimir_tsurko.ecommerse.R
 import com.vladimir_tsurko.ecommerse.databinding.FragmentLogInBinding
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.AuthViewModel
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.ViewModelFactory
-import com.vladimir_tsurko.ecommerse.utils.Constants.LOGIN_SUCCESS
+import com.vladimir_tsurko.utils.Constants.LOGIN_SUCCESS
 import kotlinx.android.synthetic.main.fragment_log_in.view.*
-import kotlinx.android.synthetic.main.fragment_log_in.view.et_name
 import javax.inject.Inject
 
 class FragmentLogIn : Fragment() {

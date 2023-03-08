@@ -9,12 +9,12 @@ import android.text.TextPaint
 import android.text.TextWatcher
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.IdRes
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.DialogFragmentNavigator
 import androidx.navigation.fragment.FragmentNavigator
@@ -25,8 +25,8 @@ import com.vladimir_tsurko.ecommerse.databinding.FragmentSignInBinding
 import com.vladimir_tsurko.ecommerse.presentation.MainActivity
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.AuthViewModel
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.ViewModelFactory
-import com.vladimir_tsurko.ecommerse.utils.Constants.REGISTRATION_ERROR
-import com.vladimir_tsurko.ecommerse.utils.Constants.REGISTRATION_SUCCESS
+import com.vladimir_tsurko.utils.Constants.REGISTRATION_ERROR
+import com.vladimir_tsurko.utils.Constants.REGISTRATION_SUCCESS
 import kotlinx.android.synthetic.main.fragment_sign_in.view.*
 import javax.inject.Inject
 

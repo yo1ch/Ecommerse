@@ -28,4 +28,14 @@
     <string name="welcome_back_text">Welcome back</string>
     <string name="sign_in_text">Sign in</string>
     <string name="sign_in_button_text">Sign in</string>
+
+    <string name ="reviews_concat">(%1$s reviews)</string>
+
+    <string name="price_concat_double">$%1$s,00</string>
+    <string name="price_concat_int">$%1$s</string>
+
+
+
+
+
 </resources>

@@ -1,14 +1,12 @@
 package com.vladimir_tsurko.ecommerse.presentation.adapters.colorsAdapter
 
 import android.graphics.Color
-import android.opengl.Visibility
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
+import com.vladimir_tsurko.domain.models.ColorModel
 import com.vladimir_tsurko.ecommerse.databinding.ColorListItemBinding
-import com.vladimir_tsurko.ecommerse.domain.models.ColorModel
-
 
 
 class ColorsAdapter() : ListAdapter<ColorModel, ColorsViewHolder>(ColorsDiffUtilCallback) {

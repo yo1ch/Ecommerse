@@ -3,8 +3,8 @@ package com.vladimir_tsurko.ecommerse.presentation.adapters.categoriesAdapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
+import com.vladimir_tsurko.domain.models.CategoryModel
 import com.vladimir_tsurko.ecommerse.databinding.CategoryListItemBinding
-import com.vladimir_tsurko.ecommerse.domain.models.CategoryModel
 
 class CategoriesAdapter() : ListAdapter<CategoryModel, CategoriesViewHolder>(CategoriesDiffUtillCallback) {
 

@@ -2,24 +2,19 @@ package com.vladimir_tsurko.ecommerse.presentation.fragments
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.net.toUri
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.vladimir_tsurko.ecommerse.App
 import com.vladimir_tsurko.ecommerse.R
-import com.vladimir_tsurko.ecommerse.databinding.FragmentHomeBinding
 import com.vladimir_tsurko.ecommerse.databinding.FragmentUserInformationBinding
-import com.vladimir_tsurko.ecommerse.presentation.MainActivity
-import com.vladimir_tsurko.ecommerse.presentation.viewmodels.AuthViewModel
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.UserDetailsViewModel
 import com.vladimir_tsurko.ecommerse.presentation.viewmodels.ViewModelFactory
 import kotlinx.coroutines.launch
