@@ -55,7 +55,6 @@ dependencies {
 
     implementation project(path: ':domain')
     implementation project(path: ':utils')
-//    implementation project(path: ':app')
 
     //Dagger2
     implementation 'com.google.dagger:dagger:2.45'

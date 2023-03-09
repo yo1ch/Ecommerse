@@ -81,6 +81,7 @@ class FragmentLogIn : Fragment() {
         viewModel.loginStatus.observe(viewLifecycleOwner){
             if(it == LOGIN_SUCCESS){
                 navigateSafe(R.id.action_fragmentLogIn_to_main_graph)
+                Toast.makeText(activity, it, Toast.LENGTH_SHORT).show()
             } else{
                 Toast.makeText(activity, it, Toast.LENGTH_SHORT).show()
             }

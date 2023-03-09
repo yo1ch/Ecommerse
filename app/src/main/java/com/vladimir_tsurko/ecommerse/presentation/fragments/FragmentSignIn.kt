@@ -122,6 +122,7 @@ class FragmentSignIn : Fragment() {
         viewModel.registrationStatus.observe(viewLifecycleOwner) {
             if (it == REGISTRATION_SUCCESS) {
                 navigateSafe(R.id.action_fragmentSignIn_to_main_graph)
+                Toast.makeText(activity, it, Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(activity, REGISTRATION_ERROR, Toast.LENGTH_SHORT).show()
             }
