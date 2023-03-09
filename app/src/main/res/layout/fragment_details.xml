@@ -8,6 +8,15 @@
     android:layout_height="match_parent"
     tools:context=".presentation.fragments.DetailsFragment">
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageButton
         android:id="@+id/back_button"
         android:layout_width="24dp"
@@ -52,6 +61,7 @@
             android:layout_height="100dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="30dp"
+            android:visibility="invisible"
             app:cardBackgroundColor="#E5E9EF"
             app:cardCornerRadius="16dp"
             app:cardElevation="0dp"
@@ -60,7 +70,8 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0">
+            app:layout_constraintVertical_bias="1.0"
+            tools:visibility="visible">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -170,8 +181,10 @@
         android:layout_height="16dp"
         android:layout_marginTop="8dp"
         android:src="@drawable/favorite_icon"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/detailsTextView"
-        app:layout_constraintTop_toBottomOf="@+id/detailsTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/detailsTextView"
+        tools:visibility="visible" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textViewRating"
@@ -209,14 +222,18 @@
         android:textColor="@color/grey_font"
         android:textFontWeight="600"
         android:textSize="16sp"
+        android:visibility="invisible"
         app:fontFamily="@font/poppins_regular"
         app:layout_constraintBottom_toTopOf="@id/rv_colors"
         app:layout_constraintStart_toStartOf="@+id/iconFavourite"
         app:layout_constraintTop_toBottomOf="@+id/iconFavourite"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        tools:visibility="visible" />
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:visibility="invisible"
+        tools:visibility="visible"
         android:id="@+id/bottomMenu"
         android:layout_width="match_parent"
         android:layout_height="160dp"

@@ -81,14 +81,14 @@ class HomeViewModel @Inject constructor(
     private suspend fun getData(): List<ListItem> {
 
         val items = mutableListOf<ListItem>()
-        val job1 = viewModelScope.launch {
+        val jobLatest = viewModelScope.launch {
             items.add(getLatestUseCase())
         }
-        job1.join()
-        val job2 = viewModelScope.launch {
+        jobLatest.join()
+        val jobFlashSale = viewModelScope.launch {
             items.add(getFlashSaleUseCase())
         }
-        job2.join()
+        jobFlashSale.join()
         val brands = getBrandsUseCase()
         items.add(brands)
         return items
